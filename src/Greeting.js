@@ -1,7 +1,5 @@
 import React from 'react';
 
-function Greeting(props) {
+export const Greeting = (props) => {
   return <div className="main">Hello, {props.name}!</div>;
-}
-
-export default Greeting;
+};
