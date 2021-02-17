@@ -91,7 +91,29 @@
       "react"
     ],
     "rules": {
-      "react/prop-types": 1
+      "react/prop-types": "warn",
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal"
+          ],
+          "pathGroups": [
+            {
+              "pattern": "react",
+              "group": "external",
+              "position": "before"
+            }
+          ],
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
+        }
+      ]
     },
     "ignorePatterns": "**/*.test.js"
   }

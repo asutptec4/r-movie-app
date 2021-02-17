@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+
 import Greeting from './Greeting';
+import './index.scss';
 
 const element = document.createElement('div');
 element.id = 'app';
