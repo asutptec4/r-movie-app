@@ -1,0 +1,43 @@
+@import '../../scss/index.scss';
+
+.movie-list-controls {
+  margin: 10px 0;
+  width: 100%;
+  border-bottom: 2px solid $bg-color;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  .filter-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    span {
+      padding: 10px 10px 10px 0;
+      text-transform: uppercase;
+    }
+
+    span:hover,
+    span.active {
+      border-bottom: 3px solid $item-color;
+      cursor: pointer;
+    }
+  }
+
+  .sort-control {
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px 0;
+
+    &:hover {
+      border-bottom: 3px solid $item-color;
+    }
+
+    label {
+      color: $bg-color;
+      margin-right: 10px;
+    }
+  }
+}

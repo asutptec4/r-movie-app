@@ -1,0 +1,30 @@
+@import '../../scss/index.scss';
+
+.global-search {
+  min-height: 50px;
+  margin: 20px 120px;
+
+  .title {
+    display: block;
+    text-transform: uppercase;
+    font-size: $fs-large;
+    margin-bottom: 25px;
+  }
+
+  .input {
+    background-color: $bg-color;
+    color: $label-color;
+    width: calc(100% - 250px);
+    border: solid 3px $bg-color;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin: 5px 10px 5px 0;
+    font-size: $fs-normal;
+    opacity: 0.7;
+  }
+
+  .button {
+    @include c-button($item-color, $label-color);
+    width: 150px;
+  }
+}

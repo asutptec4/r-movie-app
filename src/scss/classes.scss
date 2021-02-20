@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+.c-logo {
+  font-size: $fs-logo;
+  font-weight: bold;
+  color: $item-color;
+}
+
+.c-p-v-15 {
+  padding: 15px 0;
+}
+
+.c-no-content-label {
+  padding: 150px 0;
+  text-align: center;
+  font-size: $fs-large;
+}
+
+@mixin c-button($button-color, $label-color) {
+  background-color: $button-color;
+  color: $label-color;
+  font-size: $fs-normal;
+  margin: 1em;
+  padding: 0.5em 1em;
+  border: 3px solid $button-color;
+  border-radius: 3px;
+  cursor: pointer;
+}
