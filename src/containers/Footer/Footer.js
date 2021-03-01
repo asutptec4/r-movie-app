@@ -5,7 +5,7 @@ import './Footer.scss';
 const Footer = () => {
   return (
     <footer className="footer">
-      <span className="c-logo">NetflixRoulette</span>
+      <span className="app-logo">NetflixRoulette</span>
     </footer>
   );
 };

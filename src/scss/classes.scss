@@ -1,22 +1,22 @@
 @import './variables.scss';
 
-.c-logo {
+.app-logo {
   font-size: $fs-logo;
   font-weight: bold;
   color: $item-color;
 }
 
-.c-p-v-15 {
+.app-padding-vertical-15 {
   padding: 15px 0;
 }
 
-.c-no-content-label {
+.app-no-content-label {
   padding: 150px 0;
   text-align: center;
   font-size: $fs-large;
 }
 
-@mixin c-button($button-color, $label-color) {
+@mixin app-button($button-color, $label-color) {
   background-color: $button-color;
   color: $label-color;
   font-size: $fs-normal;

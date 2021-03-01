@@ -29,7 +29,7 @@ const WithNoFound = (Component) => {
     if (movieCount) {
       return <Component {...props} />;
     }
-    return <div className="c-no-content-label">No Movie Found</div>;
+    return <div className="app-no-content-label">No Movie Found</div>;
   };
   return func;
 };

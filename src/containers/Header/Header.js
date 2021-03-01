@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="control-area">
-        <span className="logo c-logo">NetflixRoulette</span>
+        <span className="logo app-logo">NetflixRoulette</span>
         <div className="user-controls">
           <button className="control-button">+ Add Movie</button>
           <button className="control-button">Login</button>

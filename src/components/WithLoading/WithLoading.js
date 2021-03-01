@@ -5,7 +5,7 @@ const WithLoading = (Component) => {
     if (!isLoading) {
       return <Component {...props} />;
     }
-    return <div className="c-no-content-label">Loading...</div>;
+    return <div className="app-no-content-label">Loading...</div>;
   };
   return func;
 };

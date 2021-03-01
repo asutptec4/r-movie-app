@@ -24,7 +24,7 @@
   }
 
   .button {
-    @include c-button($item-color, $label-color);
+    @include app-button($item-color, $label-color);
     width: 150px;
   }
 }
