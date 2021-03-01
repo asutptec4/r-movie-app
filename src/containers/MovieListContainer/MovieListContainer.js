@@ -2,7 +2,8 @@ import React from 'react';
 
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
-import WithLoading from '../../components/WithLoading/WithLoading';
+import WithLoading from '../../hoc/WithLoading';
+import WithNoFound from '../../hoc/WithNoFound';
 
 const movies = [1, 2, 3, 4, 5].map((v) => ({
   id: `${v}`,
@@ -23,16 +24,6 @@ const sortOptions = [
   { id: 'date', name: 'Release Date', selected: true },
   { id: 'votes', name: 'Average Votes' },
 ];
-
-const WithNoFound = (Component) => {
-  const func = ({ movieCount, ...props }) => {
-    if (movieCount) {
-      return <Component {...props} />;
-    }
-    return <div className="app-no-content-label">No Movie Found</div>;
-  };
-  return func;
-};
 
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
