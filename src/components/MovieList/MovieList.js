@@ -18,6 +18,10 @@ const MovieList = ({ movies }) => {
   );
 };
 
+MovieList.defaultProps = {
+  movies: [],
+};
+
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(MovieCard.propTypes),
 };

@@ -24,9 +24,13 @@ const MovieListControl = ({ filterOptions, sortOptions }) => {
   );
 };
 
+MovieListControl.defaultProps = {
+  filterOptions: [],
+};
+
 MovieListControl.propTypes = {
   filterOptions: PropTypes.arrayOf(SelectOption.propTypes),
-  sortOptions: PropTypes.arrayOf(SelectOption.propTypes),
+  sortOptions: PropTypes.arrayOf(SelectOption.propTypes).isRequired,
 };
 
 export default MovieListControl;
