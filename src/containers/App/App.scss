@@ -1,0 +1,13 @@
+@import '../../scss/index.scss';
+
+body {
+  font: large $font-stack;
+  color: $label-color;
+  background-color: $content-bg-color;
+  font-size: $fs-base;
+
+  .content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

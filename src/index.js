@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Greeting } from './Greeting';
-import './index.scss';
+import App from './containers/App/App';
 
-ReactDOM.render(<Greeting name="React" />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
