@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SelectOption from '../../utils/SelectOption';
+import { selectOption } from '../../types/select-option';
 import Dropdown from '../Dropdown/Dropdown';
 import './MovieListControl.scss';
 
@@ -29,8 +29,8 @@ MovieListControl.defaultProps = {
 };
 
 MovieListControl.propTypes = {
-  filterOptions: PropTypes.arrayOf(SelectOption.propTypes),
-  sortOptions: PropTypes.arrayOf(SelectOption.propTypes).isRequired,
+  filterOptions: PropTypes.arrayOf(selectOption),
+  sortOptions: PropTypes.arrayOf(selectOption).isRequired,
 };
 
 export default MovieListControl;

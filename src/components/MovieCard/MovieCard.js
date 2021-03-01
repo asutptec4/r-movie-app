@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Icon from '../../assets/card.jpg';
+import { movie } from '../../types/movie';
 import './MovieCard.scss';
 
 const MovieCard = ({ movie }) => {
@@ -18,12 +18,7 @@ const MovieCard = ({ movie }) => {
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.exact({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    releaseYear: PropTypes.number,
-  }),
+  movie: movie,
 };
 
 export default MovieCard;

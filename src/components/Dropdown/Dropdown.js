@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import SelectOption from '../../utils/SelectOption';
+import { selectOption } from '../../types/select-option';
 import './Dropdown.scss';
 
 const Dropdown = ({ options }) => {
@@ -39,7 +39,7 @@ const Dropdown = ({ options }) => {
 };
 
 Dropdown.propTypes = {
-  options: PropTypes.arrayOf(SelectOption.propTypes),
+  options: PropTypes.arrayOf(selectOption),
 };
 
 export default Dropdown;
