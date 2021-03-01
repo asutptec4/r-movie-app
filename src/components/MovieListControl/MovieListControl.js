@@ -5,11 +5,11 @@ import SelectOption from '../../utils/SelectOption';
 import Dropdown from '../Dropdown/Dropdown';
 import './MovieListControl.scss';
 
-const MovieListControl = (props) => {
+const MovieListControl = ({ filterOptions, sortOptions }) => {
   return (
     <div className="movie-list-controls ">
       <div className="filter-control">
-        {props.filterOptions.map((g) => (
+        {filterOptions.map((g) => (
           <span className={g.selected ? 'active' : ''} key={g.id}>
             {g.name}
           </span>
@@ -18,15 +18,15 @@ const MovieListControl = (props) => {
 
       <div className="sort-control">
         <label htmlFor="sort-selector">Sort by</label>
-        <Dropdown options={props.sortOptions} id="sort-selector" />
+        <Dropdown options={sortOptions} id="sort-selector" />
       </div>
     </div>
   );
 };
 
 MovieListControl.propTypes = {
-  filterOptions: PropTypes.arrayOf(SelectOption),
-  sortOptions: PropTypes.arrayOf(SelectOption),
+  filterOptions: PropTypes.arrayOf(SelectOption.propTypes),
+  sortOptions: PropTypes.arrayOf(SelectOption.propTypes),
 };
 
 export default MovieListControl;

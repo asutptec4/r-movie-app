@@ -4,14 +4,14 @@ import React from 'react';
 import Icon from '../../assets/card.jpg';
 import './MovieCard.scss';
 
-const MovieCard = (props) => {
+const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
       <img src={Icon} alt="Movie poster" className="movie-image"></img>
       <div className="movie-desc">
-        <span className="title">{props.movie.title}</span>
-        <span className="genre">{props.movie.genres ? props.movie.genres.join(' ') : ''}</span>
-        <span className="year">{props.movie.releaseYear}</span>
+        <span className="title">{movie.title}</span>
+        <span className="genre">{movie.genres ? movie.genres.join(' ') : ''}</span>
+        <span className="year">{movie.releaseYear}</span>
       </div>
     </div>
   );

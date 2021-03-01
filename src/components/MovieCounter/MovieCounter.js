@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const MovieCounter = (props) => {
-  return <div className="app-padding-vertical-15">{props.movieCount} movies found</div>;
+const MovieCounter = ({ movieCount }) => {
+  return <div className="app-padding-vertical-15">{movieCount} movies found</div>;
 };
 
 MovieCounter.defaultProps = {

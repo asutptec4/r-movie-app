@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import SelectOption from '../../utils/SelectOption';
 import './Dropdown.scss';
 
-const Dropdown = (props) => {
-  const options = props.options;
+const Dropdown = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
 

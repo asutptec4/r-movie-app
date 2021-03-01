@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import MovieListContainer from '../MovieListContainer/MovieListContainer';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
     <>
       <Header />
@@ -18,6 +18,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

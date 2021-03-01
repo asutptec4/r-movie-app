@@ -5,12 +5,12 @@ import MovieCard from '../MovieCard/MovieCard';
 import MovieCounter from '../MovieCounter/MovieCounter';
 import './MovieList.scss';
 
-const MovieList = (props) => {
+const MovieList = ({ movies }) => {
   return (
     <>
-      <MovieCounter movieCount={props.movies.length} />
+      <MovieCounter movieCount={movies.length} />
       <div className="movie-list">
-        {props.movies.map((movie) => (
+        {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
