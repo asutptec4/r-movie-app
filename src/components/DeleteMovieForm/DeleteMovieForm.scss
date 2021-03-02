@@ -1,0 +1,16 @@
+@import '../../scss/index.scss';
+
+.delete-movie-form {
+  
+  .title {
+    text-transform: uppercase;
+    font-size: $fs-large;
+    margin-bottom: 25px;
+  }
+
+  .confirm {
+    margin-top: 30px;
+    float: right;
+    @include app-button($item-color, $label-color);
+  }
+}
