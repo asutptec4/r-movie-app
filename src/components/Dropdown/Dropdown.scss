@@ -2,31 +2,32 @@
 
 .dropdown-container {
   cursor: pointer;
-}
+  width: fit-content;
 
-.dropdown-button {
-  text-transform: uppercase;
+  .dropdown-button {
+    text-transform: uppercase;
 
-  .dropdown-arrow {
-    position: relative;
-    top: 15px;
-    left: 5px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid $item-color;
+    .dropdown-arrow {
+      position: relative;
+      top: 15px;
+      left: 5px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid $item-color;
+    }
   }
-}
 
-.dropdown-list-container {
-  position: absolute;
-  background-color: $bg-color;
-}
+  .dropdown-list-container {
+    position: absolute;
+    background-color: $bg-color;
+  }
 
-.dropdown-list {
-  margin: 0;
-  padding: 5px 0;
+  .dropdown-list {
+    margin: 0;
+    padding: 5px 0;
+  }
 }
 
 .list-item {

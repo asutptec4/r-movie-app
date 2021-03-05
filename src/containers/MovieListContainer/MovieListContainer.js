@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import DeleteMovieForm from '../../components/DeleteMovieForm/DeleteMovieForm';
+import Dialog from '../../components/Dialog/Dialog';
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import WithLoading from '../../hoc/WithLoading';
@@ -28,10 +30,31 @@ const sortOptions = [
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
 const MovieListContainer = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [dialogMovie, setDialogMovie] = useState(null);
+
+  const handleCardAction = (action, movie) => {
+    console.log(action, movie);
+    setDialogMovie(movie);
+    if (action && action.id === 'delete') {
+      setShowModal(true);
+    }
+  };
+
   return (
     <>
       <MovieListControl filterOptions={genres} sortOptions={sortOptions} />
-      <MovieListWithLoading isLoading={false} movieCount={movies.length} movies={movies} />
+      <MovieListWithLoading
+        isLoading={false}
+        movieCount={movies.length}
+        movies={movies}
+        handleCardAction={handleCardAction}
+      />
+      {showModal && (
+        <Dialog handleClose={(e) => setShowModal(false)}>
+          <DeleteMovieForm movie={dialogMovie} />
+        </Dialog>
+      )}
     </>
   );
 };

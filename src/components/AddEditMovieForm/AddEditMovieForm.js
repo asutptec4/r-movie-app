@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { movie } from '../../types/movie';
 import './AddEditMovieForm.scss';
 
-const handleSave = (e) => {
+const handleSave = (e, movie) => {
   e.preventDefault();
 };
 
-const AddEditMovieForm = (props) => {
+const AddEditMovieForm = ({ movie, handleEditorClose }) => {
   return (
     <form className="add-edit-movie-form">
-      <div className="title">{props.isEditMode ? 'Edit' : 'Add'} movie</div>
-      {props.isEditMode && (
+      <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
+      {movie.id && (
         <>
           <label htmlFor="id">Movie ID:</label>
           <div>Movie Id</div>
@@ -31,14 +32,15 @@ const AddEditMovieForm = (props) => {
       <input type="text" name="runtime" id="runtimes" placeholder="Runtime here" />
       <div className="button-container">
         <input className="reset" type="reset" value="Reset" />
-        <input className="save" type="submit" value="Save" onClick={(e) => handleSave(e)} />
+        <input className="save" type="submit" value="Save" onClick={(e) => handleSave(e, movie)} />
       </div>
     </form>
   );
 };
 
 AddEditMovieForm.propTypes = {
-  isEditMode: PropTypes.bool,
+  movie: movie,
+  handleEditorClose: PropTypes.func,
 };
 
 export default AddEditMovieForm;

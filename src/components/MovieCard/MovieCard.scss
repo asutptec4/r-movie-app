@@ -5,11 +5,32 @@ $img-w: 360px;
 .movie-card {
   margin-bottom: 30px;
   margin: 1em auto;
+  position: relative;
 
   .movie-image {
     padding: 2px;
     width: $img-w;
-    height: calc(4/3 * #{$img-w});
+    height: calc(4 / 3 * #{$img-w});
+  }
+
+  .button {
+    position: absolute;
+    top: 15px;
+    left: calc(0.75 * #{$img-w});
+    display: none;
+
+    .movie-options-button {
+      background-color: $bg-color;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 40px;
+
+      div {
+        transform: rotate(90deg) translate(20px, -4px);
+        font-weight: bold;
+      }
+    }
   }
 
   .movie-desc {
@@ -36,4 +57,8 @@ $img-w: 360px;
       border-radius: 3px;
     }
   }
+}
+
+.movie-card:hover .button {
+  display: block;
 }

@@ -4,25 +4,36 @@ import React, { useState } from 'react';
 import { selectOption } from '../../types/select-option';
 import './Dropdown.scss';
 
-const Dropdown = ({ options }) => {
+const getSelected = (options) => {
+  if (options && options.length > 0) {
+    return options.find((o) => o.selected);
+  }
+  return null;
+};
+
+const Dropdown = ({ options, customButton, onOptionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(getSelected(options));
 
   const toggling = () => setIsOpen(!isOpen);
 
   const onOptionClicked = (value) => () => {
     setSelectedOption(value);
     setIsOpen(false);
+    onOptionChange(value);
   };
-
-  const defaultTitle = selectedOption.name || (options && options.length > 0 ? options[0].name : 'Select Option');
 
   return (
     <div className="dropdown-container">
       <div className="dropdown-button" onClick={toggling}>
-        {defaultTitle}
-        <span className="dropdown-arrow"></span>
+        {customButton || (
+          <>
+            {selectedOption ? selectedOption.name : 'Select Option'}
+            <span className="dropdown-arrow"></span>
+          </>
+        )}
       </div>
+
       {isOpen && (
         <div className="dropdown-list-container">
           <ul className="dropdown-list">
@@ -38,8 +49,16 @@ const Dropdown = ({ options }) => {
   );
 };
 
+Dropdown.defaultProps = {
+  onOptionChange: () => {
+    console.warn('handler is not provided');
+  },
+};
+
 Dropdown.propTypes = {
   options: PropTypes.arrayOf(selectOption),
+  onOptionChange: PropTypes.func,
+  customButton: PropTypes.node,
 };
 
 export default Dropdown;
