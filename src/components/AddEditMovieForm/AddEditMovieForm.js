@@ -32,7 +32,7 @@ const AddEditMovieForm = ({ movie, handleEditorClose }) => {
       <label htmlFor="overview">Overview:</label>
       <input type="text" name="overview" id="overview" placeholder="Overview here" />
       <label htmlFor="runtime">Runtime:</label>
-      <input type="text" name="runtime" id="runtimes" placeholder="Runtime here" />
+      <input type="text" name="runtime" id="runtime" placeholder="Runtime here" />
       <div className="button-container">
         <input className="reset" type="reset" value="Reset" />
         <input className="save" type="submit" value="Save" onClick={handleSave} />

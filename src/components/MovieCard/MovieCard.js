@@ -3,7 +3,7 @@ import React from 'react';
 
 import Icon from '../../assets/card.jpg';
 import { movie } from '../../types/movie';
-import Dropdown from '../Dropdown/Dropdown';
+import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
 
 const editOptions = [
@@ -29,7 +29,11 @@ const MovieCard = ({ movie, handleCardAction }) => {
         <span className="year">{movie.releaseYear}</span>
       </div>
       <div className="button">
-        <Dropdown options={editOptions} customButton={<Button />} onOptionChange={(o) => handleCardAction(o, movie)} />
+        <SingleSelectDropdown
+          options={editOptions}
+          customButton={<Button />}
+          onOptionChange={(o) => handleCardAction(o, movie)}
+        />
       </div>
     </div>
   );

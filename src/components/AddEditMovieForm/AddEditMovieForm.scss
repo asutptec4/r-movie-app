@@ -7,13 +7,13 @@
   .title {
     text-transform: uppercase;
     font-size: $fs-large;
-    margin-bottom: 25px;
+    margin-bottom: 1em;
   }
 
   label {
     color: $item-color;
     text-transform: uppercase;
-    margin: 15px 0 5px 0;
+    margin: 1em 0 0.5em 0;
   }
 
   input {
@@ -22,7 +22,7 @@
     border: solid 3px $bg-color;
     border-radius: 3px;
     padding: 0.5em 1em;
-    margin: 5px 10px 5px 0;
+    margin: 0.25em 0.5em 0.25em 0;
     font-size: $fs-normal;
   }
 

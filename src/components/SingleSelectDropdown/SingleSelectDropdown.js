@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import { selectOption } from '../../types/select-option';
-import './Dropdown.scss';
+import './SingleSelectDropdown.scss';
 
 const getSelected = (options) => {
   if (options && options.length > 0) {
@@ -11,7 +11,7 @@ const getSelected = (options) => {
   return null;
 };
 
-const Dropdown = ({ options, customButton, onOptionChange }) => {
+const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(getSelected(options));
 
@@ -24,19 +24,19 @@ const Dropdown = ({ options, customButton, onOptionChange }) => {
   };
 
   return (
-    <div className="dropdown-container">
-      <div className="dropdown-button" onClick={toggling}>
+    <div className="single-select-dropdown-container">
+      <div className="single-select-dropdown-button" onClick={toggling}>
         {customButton || (
           <>
             {selectedOption ? selectedOption.name : 'Select Option'}
-            <span className="dropdown-arrow"></span>
+            <span className="single-select-dropdown-arrow"></span>
           </>
         )}
       </div>
 
       {isOpen && (
-        <div className="dropdown-list-container">
-          <ul className="dropdown-list">
+        <div className="single-select-dropdown-list-container">
+          <ul className="single-select-dropdown-list">
             {options.map((option) => (
               <li className="list-item" onClick={onOptionClicked(option)} key={option.id}>
                 {option.name}
@@ -49,16 +49,16 @@ const Dropdown = ({ options, customButton, onOptionChange }) => {
   );
 };
 
-Dropdown.defaultProps = {
+SingleSelectDropdown.defaultProps = {
   onOptionChange: () => {
     console.warn('handler is not provided');
   },
 };
 
-Dropdown.propTypes = {
+SingleSelectDropdown.propTypes = {
   options: PropTypes.arrayOf(selectOption),
   onOptionChange: PropTypes.func,
   customButton: PropTypes.node,
 };
 
-export default Dropdown;
+export default SingleSelectDropdown;

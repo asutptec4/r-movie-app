@@ -1,13 +1,13 @@
 @import '../../scss/index.scss';
 
-.dropdown-container {
+.single-select-dropdown-container {
   cursor: pointer;
   width: fit-content;
 
-  .dropdown-button {
+  .single-select-dropdown-button {
     text-transform: uppercase;
 
-    .dropdown-arrow {
+    .single-select-dropdown-arrow {
       position: relative;
       top: 15px;
       left: 5px;
@@ -19,12 +19,12 @@
     }
   }
 
-  .dropdown-list-container {
+  .single-select-dropdown-list-container {
     position: absolute;
     background-color: $bg-color;
   }
 
-  .dropdown-list {
+  .single-select-dropdown-list {
     margin: 0;
     padding: 5px 0;
   }

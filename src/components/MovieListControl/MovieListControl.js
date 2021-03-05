@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { selectOption } from '../../types/select-option';
-import Dropdown from '../Dropdown/Dropdown';
+import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieListControl.scss';
 
 const MovieListControl = ({ filterOptions, sortOptions }) => {
@@ -18,7 +18,7 @@ const MovieListControl = ({ filterOptions, sortOptions }) => {
 
       <div className="sort-control">
         <label htmlFor="sort-selector">Sort by</label>
-        <Dropdown options={sortOptions} id="sort-selector" />
+        <SingleSelectDropdown options={sortOptions} id="sort-selector" />
       </div>
     </div>
   );
