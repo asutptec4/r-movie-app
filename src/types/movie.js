@@ -4,7 +4,7 @@ const { arrayOf, exact, number, string } = PropTypes;
 
 export const movie = exact({
   id: string,
-  title: string.isRequired,
+  title: string,
   genres: arrayOf(string),
   releaseYear: number,
 });
