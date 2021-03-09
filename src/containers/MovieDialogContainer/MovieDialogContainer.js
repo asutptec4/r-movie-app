@@ -18,14 +18,17 @@ const MovieDialogContainer = ({ action, movie }) => {
     setShowModal(false);
   };
 
-  let form;
-  if (action?.id === 'delete') {
-    form = <DeleteMovieForm movie={movie} handleEditorClose={handleClose} />;
-  } else {
-    form = <AddEditMovieForm movie={movie} handleEditorClose={handleClose} />;
-  }
+  const Form = action?.id === 'delete' ? DeleteMovieForm : AddEditMovieForm;
 
-  return <>{showModal && <Dialog handleClose={handleClose}>{form}</Dialog>}</>;
+  return (
+    <>
+      {showModal && (
+        <Dialog handleClose={handleClose}>
+          <Form movie={movie} handleEditorClose={handleClose} />
+        </Dialog>
+      )}
+    </>
+  );
 };
 
 MovieDialogContainer.propTypes = {
