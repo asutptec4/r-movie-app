@@ -5,7 +5,7 @@
   width: 100%;
   border-bottom: 2px solid $bg-color;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
 
   .filter-control {
@@ -14,7 +14,7 @@
     justify-content: flex-start;
 
     span {
-      padding: 10px 10px 10px 0;
+      padding: 0.5em 0.5em 0.5em 0;
       text-transform: uppercase;
     }
 
@@ -29,7 +29,7 @@
     text-transform: uppercase;
     display: flex;
     flex-flow: row nowrap;
-    padding: 10px 0;
+    padding: 0.5em 0;
 
     &:hover {
       border-bottom: 3px solid $item-color;
@@ -37,7 +37,7 @@
 
     label {
       color: $bg-color;
-      margin-right: 10px;
+      margin-right: 0.5em ;
     }
   }
 }

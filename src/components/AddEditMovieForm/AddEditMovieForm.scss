@@ -1,0 +1,44 @@
+@import '../../scss/index.scss';
+
+.add-edit-movie-form {
+  display: flex;
+  flex-flow: column;
+
+  .title {
+    text-transform: uppercase;
+    font-size: $fs-large;
+    margin-bottom: 1em;
+  }
+
+  label {
+    color: $item-color;
+    text-transform: uppercase;
+    margin: 1em 0 0.5em 0;
+  }
+
+  input {
+    background-color: $bg-color;
+    color: $label-color;
+    border: solid 3px $bg-color;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin: 0.25em 0.5em 0.25em 0;
+    font-size: $fs-normal;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+
+    .save {
+      @include app-button($item-color, $label-color);
+    }
+
+    .reset {
+      @include app-button($content-bg-color, $item-color);
+      border: 1px solid $item-color;
+      border-radius: 3px;
+    }
+  }
+}

@@ -4,7 +4,6 @@ $header-height: 350px;
 
 .header {
   height: $header-height;
-  min-height: $header-height;
   overflow: hidden;
 
   .logo {
@@ -13,7 +12,7 @@ $header-height: 350px;
 
   .control-area {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
   }
 
@@ -22,6 +21,7 @@ $header-height: 350px;
       @include app-button($bg-color, $item-color);
       font-weight: bold;
       opacity: 0.7;
+      margin-right: 1em;
     }
   }
 }
@@ -39,4 +39,10 @@ $header-height: 350px;
   z-index: -1;
   filter: blur(5px);
   -webkit-filter: blur(5px);
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    height: auto;
+  }
 }

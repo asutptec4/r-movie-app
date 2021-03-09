@@ -1,0 +1,40 @@
+@import '../../scss/index.scss';
+
+.single-select-dropdown-container {
+  cursor: pointer;
+  width: fit-content;
+
+  .single-select-dropdown-button {
+    text-transform: uppercase;
+
+    .single-select-dropdown-arrow {
+      position: relative;
+      top: 15px;
+      left: 5px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid $item-color;
+    }
+  }
+
+  .single-select-dropdown-list-container {
+    position: absolute;
+    background-color: $bg-color;
+  }
+
+  .single-select-dropdown-list {
+    margin: 0;
+    padding: 5px 0;
+  }
+}
+
+.list-item {
+  list-style: none;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  &:hover {
+    background-color: $item-color;
+  }
+}

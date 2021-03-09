@@ -4,16 +4,38 @@ $img-w: 360px;
 
 .movie-card {
   margin-bottom: 30px;
+  margin: 1em auto;
+  position: relative;
 
   .movie-image {
     padding: 2px;
     width: $img-w;
-    height: calc(4/3 * #{$img-w});
+    height: calc(4 / 3 * #{$img-w});
+  }
+
+  .button {
+    position: absolute;
+    top: 15px;
+    left: calc(0.75 * #{$img-w});
+    display: none;
+
+    .movie-options-button {
+      background-color: $bg-color;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 40px;
+
+      div {
+        transform: rotate(90deg) translate(20px, -4px);
+        font-weight: bold;
+      }
+    }
   }
 
   .movie-desc {
     width: $img-w;
-    padding: 5px;
+    padding: 0.5em;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
@@ -30,9 +52,13 @@ $img-w: 360px;
     .year {
       grid-column: 3;
       justify-self: end;
-      padding: 5px 10px;
+      padding: 0.25em 0.5em;
       border: 1px solid;
       border-radius: 3px;
     }
   }
+}
+
+.movie-card:hover .button {
+  display: block;
 }
