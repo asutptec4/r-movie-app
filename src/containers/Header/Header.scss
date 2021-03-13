@@ -1,10 +1,13 @@
 @import '../../scss/index.scss';
 
 $header-height: 350px;
+$header-height-large: 500px;
+$header-padding: 1em;
 
 .header {
   height: $header-height;
   overflow: hidden;
+  padding: $header-padding;
 
   .logo {
     padding: 10px;
@@ -26,6 +29,11 @@ $header-height: 350px;
   }
 }
 
+.header.large {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: $header-height-large;
+}
+
 .header::before {
   content: '';
   background-image: url('../../assets/posters-bg.jpg');
@@ -35,10 +43,14 @@ $header-height: 350px;
   bottom: 0px;
   left: 0px;
   opacity: 0.1;
-  max-height: $header-height;
+  max-height: calc(#{$header-height} + 2 * #{$header-padding});
   z-index: -1;
   filter: blur(5px);
   -webkit-filter: blur(5px);
+}
+
+.header.large::before {
+  max-height: calc(#{$header-height-large} + 2 * #{$header-padding});
 }
 
 @media screen and (max-width: 800px) {

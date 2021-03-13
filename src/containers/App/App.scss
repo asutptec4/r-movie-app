@@ -5,6 +5,7 @@ body {
   color: $label-color;
   background-color: $content-bg-color;
   font-size: $fs-base;
+  margin: 0;
 
   .content {
     max-width: 1400px;
