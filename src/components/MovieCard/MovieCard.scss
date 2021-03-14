@@ -11,6 +11,7 @@ $img-w: 360px;
     padding: 2px;
     width: $img-w;
     height: calc(4 / 3 * #{$img-w});
+    cursor: pointer;
   }
 
   .button {

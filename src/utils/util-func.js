@@ -1,5 +1,5 @@
 export const roundRating = (rating) => {
-  return Math.round(rating * 10) / 10;
+  return (Math.round(rating * 10) / 10).toFixed(1);
 };
 
 export const ratingToStr = (rating) => {

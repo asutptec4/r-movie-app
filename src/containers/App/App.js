@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Footer from '../Footer/Footer';
@@ -7,12 +7,14 @@ import MovieListContainer from '../MovieListContainer/MovieListContainer';
 import './App.scss';
 
 const App = () => {
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   return (
     <>
-      <Header />
+      <Header selectedMovie={selectedMovie} />
       <main className="content">
         <ErrorBoundary>
-          <MovieListContainer />
+          <MovieListContainer setSelectedMovie={setSelectedMovie} />
         </ErrorBoundary>
       </main>
       <Footer />
