@@ -19,10 +19,10 @@ const Button = () => {
   );
 };
 
-const MovieCard = ({ movie, handleCardAction }) => {
+const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
   return (
     <div className="movie-card">
-      <img src={Icon} alt="Movie poster" className="movie-image"></img>
+      <img src={Icon} alt="Movie poster" className="movie-image" onClick={(e) => handleCardClick(movie)}></img>
       <div className="movie-desc">
         <span className="title">{movie.title}</span>
         <span className="genre">{movie.genres ? movie.genres.join(' ') : ''}</span>
@@ -42,6 +42,7 @@ const MovieCard = ({ movie, handleCardAction }) => {
 MovieCard.propTypes = {
   movie: movie,
   handleCardAction: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

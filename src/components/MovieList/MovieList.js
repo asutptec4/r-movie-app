@@ -6,13 +6,18 @@ import MovieCard from '../MovieCard/MovieCard';
 import MovieCounter from '../MovieCounter/MovieCounter';
 import './MovieList.scss';
 
-const MovieList = ({ movies, handleCardAction }) => {
+const MovieList = ({ movies, handleCardAction, handleCardClick }) => {
   return (
     <>
       <MovieCounter movieCount={movies.length} />
       <div className="movie-list">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} handleCardAction={handleCardAction} />
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            handleCardAction={handleCardAction}
+            handleCardClick={handleCardClick}
+          />
         ))}
       </div>
     </>
@@ -26,6 +31,7 @@ MovieList.defaultProps = {
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(movie),
   handleCardAction: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired,
 };
 
 export default MovieList;

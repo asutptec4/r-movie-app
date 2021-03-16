@@ -7,4 +7,8 @@ export const movie = exact({
   title: string,
   genres: arrayOf(string),
   releaseYear: number,
+  duration: number,
+  overview: string,
+  runtime: string,
+  rating: number,
 });
