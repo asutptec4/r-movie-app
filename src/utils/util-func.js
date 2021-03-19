@@ -3,11 +3,18 @@ export const roundRating = (rating) => {
 };
 
 export const ratingToStr = (rating) => {
-  if (rating < 2) {
+  if (rating < 4) {
     return 'bad';
   }
-  if (rating > 4) {
+  if (rating > 7.5) {
     return 'good';
   }
   return 'norm';
+};
+
+export const getReleaseYear = (date) => {
+  if (date) {
+    return date.split('-').shift();
+  }
+  return '';
 };

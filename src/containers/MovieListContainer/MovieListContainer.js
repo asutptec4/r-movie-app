@@ -1,26 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
+import { MovieApi } from '../../api/api';
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
+import { movieFromJson } from '../../types';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
-
-const movies = [1, 2, 3, 4, 5].map((v) => ({
-  id: `${v}`,
-  title: `Movie Title ${v}`,
-  genres: ['Genre 1', 'Genre 2'],
-  releaseYear: 2000 + v,
-  duration: 20 * v,
-  rating: Math.random() * 5,
-  overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra mauris elit. Aliquam elementum diam vel nisl luctus,
-   sit amet viverra nibh porttitor. Quisque ac magna sit amet nunc semper gravida non ut diam. Integer vel elit nec lectus aliquet commodo.
-    Pellentesque gravida eleifend ornare. Maecenas vel porttitor diam. Donec quis lorem vulputate, consectetur turpis non, faucibus sem.
-     Vivamus ut pellentesque nisl, auctor feugiat quam. Morbi fringilla malesuada ligula eget pulvinar. Sed malesuada bibendum ullamcorper.
-      Donec sollicitudin placerat scelerisque. Integer volutpat nisl enim, vel elementum urna viverra vitae.`,
-  runtime: 'Lorem ipsum dolor sit amet.',
-}));
 
 const genres = [
   { id: 'all', name: 'All', selected: true },
@@ -39,6 +26,8 @@ const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
 const MovieListContainer = ({ setSelectedMovie }) => {
   const [dialogAction, setDialogAction] = useState({ action: null, currentMovie: null });
+  const [isLoading, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
 
   const handleCardAction = useCallback((action, movie) => {
     setDialogAction({ action: action, currentMovie: { ...movie } });
@@ -48,12 +37,26 @@ const MovieListContainer = ({ setSelectedMovie }) => {
     setSelectedMovie({ ...movie });
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+    MovieApi.getAll()
+      .then((r) => {
+        if (r.status === 200) {
+          const movies = r.data.data.map(movieFromJson);
+          setMovies(movies);
+        }
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <MovieListControl filterOptions={genres} sortOptions={sortOptions} />
       <MovieListWithLoading
-        isLoading={false}
-        movieCount={movies.length}
+        isLoading={isLoading}
         movies={movies}
         handleCardAction={handleCardAction}
         handleCardClick={handleCardClick}

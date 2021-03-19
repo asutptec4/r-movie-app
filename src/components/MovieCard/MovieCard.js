@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Icon from '../../assets/card.jpg';
 import { movie } from '../../types/movie';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
@@ -22,7 +21,7 @@ const Button = () => {
 const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
   return (
     <div className="movie-card">
-      <img src={Icon} alt="Movie poster" className="movie-image" onClick={(e) => handleCardClick(movie)}></img>
+      <img src={movie.poster} alt="Movie poster" className="movie-image" onClick={(e) => handleCardClick(movie)}></img>
       <div className="movie-desc">
         <span className="title">{movie.title}</span>
         <span className="genre">{movie.genres ? movie.genres.join(' ') : ''}</span>

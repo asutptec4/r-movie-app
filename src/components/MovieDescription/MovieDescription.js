@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Icon from '../../assets/card.jpg';
 import { movie } from '../../types';
-import { ratingToStr, roundRating } from '../../utils/util-func';
+import { ratingToStr } from '../../utils/util-func';
 import './MovieDescription.scss';
 
 const MovieDescription = ({ movie, closeButtonHandler }) => {
@@ -17,16 +16,16 @@ const MovieDescription = ({ movie, closeButtonHandler }) => {
       </div>
       {movie?.id && (
         <div className="movie-description">
-          <img src={Icon} alt="Movie poster" className="movie-image"></img>
+          <img src={movie.poster} alt="Movie poster" className="movie-image"></img>
           <div className="description">
             <p className="movie-title">
               <span className="title">{movie.title}</span>
-              <span className={'rating ' + ratingToStr(movie.rating)}>{roundRating(movie.rating)}</span>
+              <span className={'rating ' + ratingToStr(movie.rating)}>{movie.rating}</span>
             </p>
-            <span className="movie-runtime">{movie.runtime}</span>
+            <span className="movie-runtime">{movie.tagline}</span>
             <p className="movie-duration">
               <span>{movie.releaseYear}</span>
-              <span>{movie.duration} min</span>
+              <span>{movie.runtime} min</span>
             </p>
             <p className="movie-overview">{movie.overview}</p>
           </div>

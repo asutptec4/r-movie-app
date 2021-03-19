@@ -26,7 +26,6 @@ const Header = ({ selectedMovie }) => {
             <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
               <button className="control-button">+ Add Movie</button>
-              <button className="control-button">Login</button>
             </div>
           </div>
           <GlobalSearch />
