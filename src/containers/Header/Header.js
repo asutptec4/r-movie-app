@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescription from '../../components/MovieDescription/MovieDescription';
 import { openDialog } from '../../reducers/dialogSlice';
-import { selectDetailMovie, selectShowDetail, hideDetail } from '../../reducers/moviesSlice';
+import {
+  selectDetailMovie,
+  selectShowDetail,
+  hideDetail,
+  setSearchText,
+  fetchMovies,
+} from '../../reducers/moviesSlice';
 import { useComponentDidUpdate } from '../../utils/custom-hooks';
 import './Header.scss';
 
@@ -12,6 +18,11 @@ const Header = () => {
   const isShowDetail = useSelector(selectShowDetail);
   const detailMovie = useSelector(selectDetailMovie);
   const dispatch = useDispatch();
+
+  const handleSearch = (searchText) => {
+    dispatch(setSearchText(searchText));
+    dispatch(fetchMovies());
+  };
 
   useComponentDidUpdate(() => {
     if (isShowDetail) {
@@ -33,7 +44,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <GlobalSearch />
+          <GlobalSearch handleSearch={handleSearch} />
         </>
       )}
     </header>

@@ -6,20 +6,27 @@ import MovieListControl from '../../components/MovieListControl/MovieListControl
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
 import { openDialog } from '../../reducers/dialogSlice';
-import { selectMovies, selectLoading, setDetailMovie, showDetail, fetchMovies } from '../../reducers/moviesSlice';
+import {
+  selectMovies,
+  selectLoading,
+  setDetailMovie,
+  showDetail,
+  fetchMovies,
+  selectFoundMoviesCount,
+} from '../../reducers/moviesSlice';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
 
 const genres = [
-  { id: 'all', name: 'All', selected: true },
-  { id: 'doc', name: 'Documentary' },
-  { id: 'com', name: 'Comedy' },
-  { id: 'hor', name: 'Horror' },
-  { id: 'cri', name: 'Crime' },
+  { id: 'All', name: 'All', selected: true },
+  { id: 'Documentary', name: 'Documentary' },
+  { id: 'Comedy', name: 'Comedy' },
+  { id: 'Horror', name: 'Horror' },
+  { id: 'Crime', name: 'Crime' },
 ];
 
 const sortOptions = [
-  { id: 'date', name: 'Release Date', selected: true },
-  { id: 'votes', name: 'Average Votes' },
+  { id: 'release_date', name: 'Release Date', selected: true },
+  { id: 'vote_average', name: 'Average Votes' },
 ];
 
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
@@ -27,7 +34,7 @@ const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 const MovieListContainer = () => {
   const isLoading = useSelector(selectLoading);
   const movies = useSelector(selectMovies);
-
+  const foundMoviesCount = useSelector(selectFoundMoviesCount);
   const dispatch = useDispatch();
 
   const handleCardAction = useCallback((action, movie) => {
@@ -49,6 +56,7 @@ const MovieListContainer = () => {
       <MovieListWithLoading
         isLoading={isLoading}
         movies={movies}
+        foundMoviesCount={foundMoviesCount}
         movieCount={movies.length}
         handleCardAction={handleCardAction}
         handleCardClick={handleCardClick}
