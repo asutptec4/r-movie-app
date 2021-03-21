@@ -25,3 +25,13 @@ export const useSetReset = (initState = false) => {
 
   return [flag, set, reset];
 };
+
+export const usePrevValue = (value) => {
+  const prevValueRef = useRef();
+
+  useEffect(() => {
+    prevValueRef.current = value;
+  });
+
+  return prevValueRef.current;
+};

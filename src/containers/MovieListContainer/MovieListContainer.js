@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { MovieApi } from '../../api/api';
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
-import { movieFromJson } from '../../types';
+import { selectMovies, selectLoading, setDetailMovie, showDetail, fetchMovies } from '../../reducers/moviesSlice';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
 
 const genres = [
@@ -24,32 +23,24 @@ const sortOptions = [
 
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
-const MovieListContainer = ({ setSelectedMovie }) => {
+const MovieListContainer = () => {
   const [dialogAction, setDialogAction] = useState({ action: null, currentMovie: null });
-  const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const isLoading = useSelector(selectLoading);
+  const movies = useSelector(selectMovies);
+
+  const dispatch = useDispatch();
 
   const handleCardAction = useCallback((action, movie) => {
     setDialogAction({ action: action, currentMovie: { ...movie } });
   }, []);
 
   const handleCardClick = useCallback((movie) => {
-    setSelectedMovie({ ...movie });
+    dispatch(setDetailMovie(movie));
+    dispatch(showDetail());
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    MovieApi.getAll()
-      .then((r) => {
-        if (r.status === 200) {
-          const movies = r.data.data.map(movieFromJson);
-          setMovies(movies);
-        }
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
+    dispatch(fetchMovies());
   }, []);
 
   return (
@@ -58,16 +49,13 @@ const MovieListContainer = ({ setSelectedMovie }) => {
       <MovieListWithLoading
         isLoading={isLoading}
         movies={movies}
+        movieCount={movies.length}
         handleCardAction={handleCardAction}
         handleCardClick={handleCardClick}
       />
       <MovieDialogContainer action={dialogAction.action} movie={dialogAction.currentMovie} />
     </>
   );
-};
-
-MovieListContainer.propTypes = {
-  setSelectedMovie: PropTypes.func.isRequired,
 };
 
 export default MovieListContainer;

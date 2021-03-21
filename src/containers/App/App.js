@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
+import store from '../../store/store';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MovieListContainer from '../MovieListContainer/MovieListContainer';
 import './App.scss';
 
 const App = () => {
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
   return (
-    <>
-      <Header selectedMovie={selectedMovie} />
+    <Provider store={store}>
+      <Header />
       <main className="content">
         <ErrorBoundary>
-          <MovieListContainer setSelectedMovie={setSelectedMovie} />
+          <MovieListContainer />
         </ErrorBoundary>
       </main>
       <Footer />
-    </>
+    </Provider>
   );
 };
 
