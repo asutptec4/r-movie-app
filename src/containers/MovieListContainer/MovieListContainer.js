@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
+import { openDialog } from '../../reducers/dialogSlice';
 import { selectMovies, selectLoading, setDetailMovie, showDetail, fetchMovies } from '../../reducers/moviesSlice';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
 
@@ -24,14 +25,13 @@ const sortOptions = [
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
 const MovieListContainer = () => {
-  const [dialogAction, setDialogAction] = useState({ action: null, currentMovie: null });
   const isLoading = useSelector(selectLoading);
   const movies = useSelector(selectMovies);
 
   const dispatch = useDispatch();
 
   const handleCardAction = useCallback((action, movie) => {
-    setDialogAction({ action: action, currentMovie: { ...movie } });
+    dispatch(openDialog({ action, movie }));
   }, []);
 
   const handleCardClick = useCallback((movie) => {
@@ -53,7 +53,7 @@ const MovieListContainer = () => {
         handleCardAction={handleCardAction}
         handleCardClick={handleCardClick}
       />
-      <MovieDialogContainer action={dialogAction.action} movie={dialogAction.currentMovie} />
+      <MovieDialogContainer />
     </>
   );
 };

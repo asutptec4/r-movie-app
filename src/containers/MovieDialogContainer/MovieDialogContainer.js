@@ -1,36 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AddEditMovieForm from '../../components/AddEditMovieForm/AddEditMovieForm';
 import DeleteMovieForm from '../../components/DeleteMovieForm/DeleteMovieForm';
 import Dialog from '../../components/Dialog/Dialog';
-import { movie, movieAction } from '../../types';
-import { useComponentDidUpdate, useSetReset } from '../../utils/custom-hooks';
+import { closeDialog, selectDialogAction, selectDialogIsOpen, selectDialogMovie } from '../../reducers/dialogSlice';
 
-const MovieDialogContainer = ({ action, movie }) => {
-  const [isOpened, open, close] = useSetReset(!!action);
+const MovieDialogContainer = () => {
+  const action = useSelector(selectDialogAction);
+  const movie = useSelector(selectDialogMovie);
+  const isOpen = useSelector(selectDialogIsOpen);
+  const dispatch = useDispatch();
 
-  useComponentDidUpdate(() => {
-    if (action) {
-      open();
-    }
-  }, [action, movie]);
+  const handleClose = useCallback(() => {
+    dispatch(closeDialog());
+  });
 
-  const Form = action?.id === 'delete' ? DeleteMovieForm : AddEditMovieForm;
+  const Form = action === 'delete' ? DeleteMovieForm : AddEditMovieForm;
 
   return (
     <>
-      {isOpened && (
-        <Dialog handleClose={close}>
-          <Form movie={movie} handleEditorClose={close} />
+      {isOpen && (
+        <Dialog handleClose={handleClose}>
+          <Form movie={movie} handleEditorClose={handleClose} />
         </Dialog>
       )}
     </>
   );
-};
-
-MovieDialogContainer.propTypes = {
-  action: movieAction,
-  movie: movie,
 };
 
 export default MovieDialogContainer;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescription from '../../components/MovieDescription/MovieDescription';
+import { openDialog } from '../../reducers/dialogSlice';
 import { selectDetailMovie, selectShowDetail, hideDetail } from '../../reducers/moviesSlice';
 import { useComponentDidUpdate } from '../../utils/custom-hooks';
 import './Header.scss';
@@ -27,7 +28,9 @@ const Header = () => {
           <div className="control-area">
             <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
-              <button className="control-button">+ Add Movie</button>
+              <button className="control-button" onClick={() => dispatch(openDialog({ action: 'add', movie: {} }))}>
+                + Add Movie
+              </button>
             </div>
           </div>
           <GlobalSearch />

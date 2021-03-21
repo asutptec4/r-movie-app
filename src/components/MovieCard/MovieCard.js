@@ -31,7 +31,7 @@ const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
         <SingleSelectDropdown
           options={editOptions}
           customButton={<Button />}
-          onOptionChange={(o) => handleCardAction(o, movie)}
+          onOptionChange={(o) => handleCardAction(o?.id, movie)}
         />
       </div>
     </div>
