@@ -5,6 +5,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
+import { availableFilterOptions, availableSortingOptions } from '../../movie-config';
 import { openDialog } from '../../reducers/dialogSlice';
 import {
   selectMovies,
@@ -13,21 +14,13 @@ import {
   showDetail,
   fetchMovies,
   selectFoundMoviesCount,
+  selectGenreFilter,
+  selectSortField,
+  setGenreFilter,
+  setSortField,
 } from '../../reducers/moviesSlice';
+import { updateOptions } from '../../utils/util-func';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
-
-const genres = [
-  { id: 'All', name: 'All', selected: true },
-  { id: 'Documentary', name: 'Documentary' },
-  { id: 'Comedy', name: 'Comedy' },
-  { id: 'Horror', name: 'Horror' },
-  { id: 'Crime', name: 'Crime' },
-];
-
-const sortOptions = [
-  { id: 'release_date', name: 'Release Date', selected: true },
-  { id: 'vote_average', name: 'Average Votes' },
-];
 
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
@@ -35,6 +28,8 @@ const MovieListContainer = () => {
   const isLoading = useSelector(selectLoading);
   const movies = useSelector(selectMovies);
   const foundMoviesCount = useSelector(selectFoundMoviesCount);
+  const appliedSorting = useSelector(selectSortField);
+  const appliedFilter = useSelector(selectGenreFilter);
   const dispatch = useDispatch();
 
   const handleCardAction = useCallback((action, movie) => {
@@ -46,13 +41,28 @@ const MovieListContainer = () => {
     dispatch(showDetail());
   }, []);
 
+  const handleFilterChange = useCallback((option) => {
+    dispatch(setGenreFilter(option.id));
+    dispatch(fetchMovies());
+  }, []);
+
+  const handleSortChange = useCallback((option) => {
+    dispatch(setSortField(option.id));
+    dispatch(fetchMovies());
+  }, []);
+
   useEffect(() => {
     dispatch(fetchMovies());
   }, []);
 
   return (
     <>
-      <MovieListControl filterOptions={genres} sortOptions={sortOptions} />
+      <MovieListControl
+        filterOptions={updateOptions(availableFilterOptions, appliedFilter)}
+        sortOptions={updateOptions(availableSortingOptions, appliedSorting)}
+        handleFilterChange={handleFilterChange}
+        handleSortChange={handleSortChange}
+      />
       <MovieListWithLoading
         isLoading={isLoading}
         movies={movies}

@@ -18,3 +18,13 @@ export const getReleaseYear = (date) => {
   }
   return '';
 };
+
+export const updateOptions = (options, selectedId) => {
+  const newOptions = [];
+  for (let i = 0; i < options.length; i++) {
+    const element = options[i];
+    element.selected = element.id === selectedId;
+    newOptions.push(element);
+  }
+  return newOptions;
+};

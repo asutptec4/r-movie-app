@@ -1,23 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { MovieApi } from '../api/api';
+import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../movie-config';
 import { movieFromJson } from '../types';
 
 const initialState = {
   movies: [],
   searchText: '',
-  genreFilters: [],
-  sortField: 'release_date',
+  genreFilter: availableFilterOptions[0].id,
+  sortField: availableSortingOptions[0].id,
   detailMovie: null,
   isLoading: false,
   isShowDetail: false,
-  pageLimit: 6,
+  pageLimit: moviesPerPage,
   currentPage: 1,
   foundMoviesCount: 0,
 };
 
 export const fetchMovies = createAsyncThunk('movies/fetchMovies', (data, { getState }) => {
-  const { searchText: search, genreFilters: genres, sortField: sortBy, pageLimit: limit } = getState().movies;
+  const { searchText: search, genreFilter, sortField: sortBy, pageLimit: limit } = getState().movies;
+  const genres = genreFilter === availableFilterOptions[0].id ? [] : [genreFilter];
   const offset = 0;
   return MovieApi.getAll({ search, genres, sortBy, offset, limit });
 });
@@ -38,6 +40,12 @@ const counterSlice = createSlice({
     setSearchText(state, action) {
       state.searchText = action.payload;
     },
+    setGenreFilter(state, action) {
+      state.genreFilter = action.payload;
+    },
+    setSortField(state, action) {
+      state.sortField = action.payload;
+    },
   },
   extraReducers: {
     [fetchMovies.pending]: (state) => {
@@ -54,7 +62,14 @@ const counterSlice = createSlice({
   },
 });
 
-export const { setDetailMovie, showDetail, hideDetail, setSearchText } = counterSlice.actions;
+export const {
+  setDetailMovie,
+  showDetail,
+  hideDetail,
+  setSearchText,
+  setGenreFilter,
+  setSortField,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
 
@@ -63,3 +78,5 @@ export const selectDetailMovie = (state) => state.movies.detailMovie;
 export const selectLoading = (state) => state.movies.isLoading;
 export const selectShowDetail = (state) => state.movies.isShowDetail;
 export const selectFoundMoviesCount = (state) => state.movies.foundMoviesCount;
+export const selectGenreFilter = (state) => state.movies.genreFilter;
+export const selectSortField = (state) => state.movies.sortField;
