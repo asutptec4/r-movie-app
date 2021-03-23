@@ -28,3 +28,11 @@ export const updateOptions = (options, selectedId) => {
   }
   return newOptions;
 };
+
+export const calcLastPage = (totalCount, countPerPage) => {
+  let pageCount = Math.floor(totalCount / countPerPage);
+  if (totalCount % countPerPage !== 0) {
+    pageCount++;
+  }
+  return pageCount;
+};

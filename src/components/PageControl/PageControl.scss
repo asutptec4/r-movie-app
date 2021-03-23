@@ -1,0 +1,14 @@
+.page-control {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+  .page-control-button {
+    margin: 0.25em 1em;
+    cursor: pointer;
+
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+}

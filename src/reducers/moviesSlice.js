@@ -18,9 +18,9 @@ const initialState = {
 };
 
 export const fetchMovies = createAsyncThunk('movies/fetchMovies', (data, { getState }) => {
-  const { searchText: search, genreFilter, sortField: sortBy, pageLimit: limit } = getState().movies;
+  const { searchText: search, genreFilter, sortField: sortBy, pageLimit: limit, currentPage } = getState().movies;
   const genres = genreFilter === availableFilterOptions[0].id ? [] : [genreFilter];
-  const offset = 0;
+  const offset = (currentPage - 1) * limit;
   return MovieApi.getAll({ search, genres, sortBy, offset, limit });
 });
 
@@ -39,12 +39,18 @@ const counterSlice = createSlice({
     },
     setSearchText(state, action) {
       state.searchText = action.payload;
+      state.genreFilter = availableFilterOptions[0].id;
+      state.sortField = availableSortingOptions[0].id;
+      state.currentPage = 1;
     },
     setGenreFilter(state, action) {
       state.genreFilter = action.payload;
     },
     setSortField(state, action) {
       state.sortField = action.payload;
+    },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
     },
   },
   extraReducers: {
@@ -69,6 +75,7 @@ export const {
   setSearchText,
   setGenreFilter,
   setSortField,
+  setCurrentPage,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
@@ -80,3 +87,4 @@ export const selectShowDetail = (state) => state.movies.isShowDetail;
 export const selectFoundMoviesCount = (state) => state.movies.foundMoviesCount;
 export const selectGenreFilter = (state) => state.movies.genreFilter;
 export const selectSortField = (state) => state.movies.sortField;
+export const selectCurrentPage = (state) => state.movies.currentPage;

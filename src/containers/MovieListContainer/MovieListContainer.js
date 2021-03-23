@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
+import PageControl from '../../components/PageControl/PageControl';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
-import { availableFilterOptions, availableSortingOptions } from '../../movie-config';
+import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../../movie-config';
 import { openDialog } from '../../reducers/dialogSlice';
 import {
   selectMovies,
@@ -18,6 +19,8 @@ import {
   selectSortField,
   setGenreFilter,
   setSortField,
+  selectCurrentPage,
+  setCurrentPage,
 } from '../../reducers/moviesSlice';
 import { updateOptions } from '../../utils/util-func';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
@@ -30,6 +33,7 @@ const MovieListContainer = () => {
   const foundMoviesCount = useSelector(selectFoundMoviesCount);
   const appliedSorting = useSelector(selectSortField);
   const appliedFilter = useSelector(selectGenreFilter);
+  const currentPage = useSelector(selectCurrentPage);
   const dispatch = useDispatch();
 
   const handleCardAction = useCallback((action, movie) => {
@@ -48,6 +52,11 @@ const MovieListContainer = () => {
 
   const handleSortChange = useCallback((option) => {
     dispatch(setSortField(option.id));
+    dispatch(fetchMovies());
+  }, []);
+
+  const handlePageChange = useCallback((newPage) => {
+    dispatch(setCurrentPage(newPage));
     dispatch(fetchMovies());
   }, []);
 
@@ -71,6 +80,12 @@ const MovieListContainer = () => {
         handleCardAction={handleCardAction}
         handleCardClick={handleCardClick}
       />
+      <PageControl
+        currentPage={currentPage}
+        itemPerPage={moviesPerPage}
+        totalItemCount={foundMoviesCount}
+        handlePageChange={handlePageChange}
+      ></PageControl>
       <MovieDialogContainer />
     </>
   );
