@@ -36,3 +36,7 @@ export const calcLastPage = (totalCount, countPerPage) => {
   }
   return pageCount;
 };
+
+export const toggleSortDirection = (currentDirection) => {
+  return currentDirection === 'asc' ? 'desc' : 'asc';
+};

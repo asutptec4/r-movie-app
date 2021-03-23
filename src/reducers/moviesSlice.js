@@ -3,12 +3,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { MovieApi } from '../api/api';
 import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../movie-config';
 import { movieFromJson } from '../types';
+import { toggleSortDirection } from '../utils/util-func';
 
 const initialState = {
   movies: [],
   searchText: '',
   genreFilter: availableFilterOptions[0].id,
   sortField: availableSortingOptions[0].id,
+  sortDirection: 'desc',
   detailMovie: null,
   isLoading: false,
   isShowDetail: false,
@@ -18,10 +20,17 @@ const initialState = {
 };
 
 export const fetchMovies = createAsyncThunk('movies/fetchMovies', (data, { getState }) => {
-  const { searchText: search, genreFilter, sortField: sortBy, pageLimit: limit, currentPage } = getState().movies;
+  const {
+    searchText: search,
+    genreFilter,
+    sortField: sortBy,
+    pageLimit: limit,
+    currentPage,
+    sortDirection: sortOrder,
+  } = getState().movies;
   const genres = genreFilter === availableFilterOptions[0].id ? [] : [genreFilter];
   const offset = (currentPage - 1) * limit;
-  return MovieApi.getAll({ search, genres, sortBy, offset, limit });
+  return MovieApi.getAll({ search, genres, sortBy, sortOrder, offset, limit });
 });
 
 const counterSlice = createSlice({
@@ -47,6 +56,9 @@ const counterSlice = createSlice({
       state.genreFilter = action.payload;
     },
     setSortField(state, action) {
+      if (state.sortField === action.payload) {
+        state.sortDirection = toggleSortDirection(state.sortDirection);
+      }
       state.sortField = action.payload;
     },
     setCurrentPage(state, action) {

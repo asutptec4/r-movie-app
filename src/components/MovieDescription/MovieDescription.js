@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
+import Icon from '../../assets/image-not-found.png';
 import { movie } from '../../types';
 import { ratingToStr } from '../../utils/util-func';
 import './MovieDescription.scss';
 
 const MovieDescription = ({ movie, closeButtonHandler }) => {
+  const [image, setImage] = useState(movie.poster);
+
   return (
     <section className="movie-description-container">
       <div className="movie-description-buttons">
@@ -16,7 +19,15 @@ const MovieDescription = ({ movie, closeButtonHandler }) => {
       </div>
       {movie?.id && (
         <div className="movie-description">
-          <img src={movie.poster} alt="Movie poster" className="movie-image"></img>
+          {/* TODO: make new component */}
+          <img
+            src={image}
+            alt="Movie poster"
+            className="movie-image"
+            onError={(e) => {
+              setImage(Icon);
+            }}
+          ></img>
           <div className="description">
             <p className="movie-title">
               <span className="title">{movie.title}</span>

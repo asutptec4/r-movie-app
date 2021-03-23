@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
+import Icon from '../../assets/image-not-found.png';
 import { movie } from '../../types/movie';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
@@ -19,9 +20,19 @@ const Button = () => {
 };
 
 const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
+  const [image, setImage] = useState(movie.poster);
+
   return (
     <div className="movie-card">
-      <img src={movie.poster} alt="Movie poster" className="movie-image" onClick={(e) => handleCardClick(movie)}></img>
+      <img
+        src={image}
+        alt="Movie poster"
+        className="movie-image"
+        onClick={(e) => handleCardClick(movie)}
+        onError={(e) => {
+          setImage(Icon);
+        }}
+      ></img>
       <div className="movie-desc">
         <span className="title">{movie.title}</span>
         <span className="genre">{movie.genres ? movie.genres.join(' ') : ''}</span>
