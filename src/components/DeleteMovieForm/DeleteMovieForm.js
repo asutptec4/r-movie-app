@@ -4,11 +4,11 @@ import React from 'react';
 import { movie } from '../../types/movie';
 import './DeleteMovieForm.scss';
 
-const DeleteMovieForm = ({ movie, handleEditorClose }) => {
+const DeleteMovieForm = ({ movie, handleSubmit }) => {
   const handleDelete = (e) => {
     e.preventDefault();
-    if (handleEditorClose) {
-      handleEditorClose();
+    if (handleSubmit) {
+      handleSubmit(movie);
     }
   };
 
@@ -23,7 +23,7 @@ const DeleteMovieForm = ({ movie, handleEditorClose }) => {
 
 DeleteMovieForm.propTypes = {
   movie: movie,
-  handleEditorClose: PropTypes.func,
+  handleSubmit: PropTypes.func,
 };
 
 export default DeleteMovieForm;
