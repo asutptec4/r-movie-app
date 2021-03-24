@@ -9,3 +9,6 @@ export const REQUEST_PENDING = 'pending';
 
 export const DIALOG_SLICE_NAME = 'dialog';
 export const MOVIES_SLICE_NAME = 'movies';
+
+export const ASC_ORDER = 'asc';
+export const DESC_ORDER = 'desc';

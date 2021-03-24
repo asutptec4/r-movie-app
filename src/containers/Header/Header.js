@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescription from '../../components/MovieDescription/MovieDescription';
+import { ADD_ACTION } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
 import {
   selectDetailMovie,
@@ -39,7 +40,10 @@ const Header = () => {
           <div className="control-area">
             <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
-              <button className="control-button" onClick={() => dispatch(openDialog({ action: 'add', movie: {} }))}>
+              <button
+                className="control-button"
+                onClick={() => dispatch(openDialog({ action: ADD_ACTION, movie: {} }))}
+              >
                 + Add Movie
               </button>
             </div>

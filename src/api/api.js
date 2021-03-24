@@ -1,14 +1,16 @@
 import { create } from 'axios';
 
+import { DESC_ORDER } from '../constant';
+
 const instance = create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://localhost:4000/movies',
 });
 
 const buildQuery = (params) => {
   if (!params) {
     return;
   }
-  const { search, genres, sortBy, sortOrder = 'desc', offset = 0, limit = 15 } = params;
+  const { search, genres, sortBy, sortOrder = DESC_ORDER, offset = 0, limit = 15 } = params;
   const requestParam = {
     params: {
       offset,
@@ -24,7 +26,6 @@ const buildQuery = (params) => {
   if (search) {
     requestParam.params = { ...requestParam.params, search, searchBy: 'title' };
   }
-  console.log(requestParam);
   return requestParam;
 };
 
@@ -35,9 +36,9 @@ const responseHandler = (r) => ({
 });
 
 export const MovieApi = {
-  getAll: (params) => instance.get('/movies', buildQuery(params)).then(responseHandler),
-  getById: (movieId) => instance.get(`/movies/${movieId}`).then(responseHandler),
-  create: (movie) => instance.post(`/movies`, movie).then(responseHandler),
-  update: (movie) => instance.put(`/movies`, movie).then(responseHandler),
-  delete: (movieId) => instance.delete(`/movies/${movieId}`).then(responseHandler),
+  getAll: (params) => instance.get('', buildQuery(params)).then(responseHandler),
+  getById: (movieId) => instance.get(`/${movieId}`).then(responseHandler),
+  create: (movie) => instance.post('', movie).then(responseHandler),
+  update: (movie) => instance.put('', movie).then(responseHandler),
+  delete: (movieId) => instance.delete(`/${movieId}`).then(responseHandler),
 };

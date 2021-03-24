@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Icon from '../../assets/image-not-found.png';
+import { DELETE_ACTION, EDIT_ACTION } from '../../constant';
 import { movie } from '../../types/movie';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
 
 const editOptions = [
-  { id: 'edit', name: 'Edit' },
-  { id: 'delete', name: 'Delete' },
+  { id: EDIT_ACTION, name: 'Edit' },
+  { id: DELETE_ACTION, name: 'Delete' },
 ];
 
 const Button = () => {

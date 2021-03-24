@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AddEditMovieForm from '../../components/AddEditMovieForm/AddEditMovieForm';
@@ -16,6 +16,7 @@ import {
   selectDialogRequestStatus,
 } from '../../reducers/dialogSlice';
 import { fetchMovies } from '../../reducers/moviesSlice';
+import { useComponentDidUpdate } from '../../utils/custom-hooks';
 
 const MovieDialogContainer = () => {
   const action = useSelector(selectDialogAction);
@@ -38,7 +39,7 @@ const MovieDialogContainer = () => {
     }
   });
 
-  useEffect(() => {
+  useComponentDidUpdate(() => {
     if (actionStatus === REQUEST_COMPLETED) {
       dispatch(fetchMovies());
       handleClose();

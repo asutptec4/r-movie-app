@@ -22,19 +22,27 @@ const PageControl = ({ currentPage, itemPerPage, totalItemCount, handlePageChang
     return isDisabled ? 'disabled' : '';
   };
 
+  const isShowPageControl = totalItemCount > itemPerPage;
+
   return (
-    <div className="page-control">
-      <span className={`page-control-button ${setDisabledState(currentPage === 1)}`} onClick={getPrevPage}>
-        Prev page
-      </span>
-      <span className="page-control-button">{currentPage}</span>
-      <span
-        className={`page-control-button ${setDisabledState(currentPage === calcLastPage(totalItemCount, itemPerPage))}`}
-        onClick={getNextPage}
-      >
-        Next page
-      </span>
-    </div>
+    <>
+      {isShowPageControl && (
+        <div className="page-control">
+          <span className={`page-control-button ${setDisabledState(currentPage === 1)}`} onClick={getPrevPage}>
+            Prev page
+          </span>
+          <span className="page-control-button">{currentPage}</span>
+          <span
+            className={`page-control-button ${setDisabledState(
+              currentPage === calcLastPage(totalItemCount, itemPerPage),
+            )}`}
+            onClick={getNextPage}
+          >
+            Next page
+          </span>
+        </div>
+      )}
+    </>
   );
 };
 

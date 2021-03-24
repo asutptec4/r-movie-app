@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { MovieApi } from '../api/api';
+import { DESC_ORDER, MOVIES_SLICE_NAME } from '../constant';
 import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../movie-config';
 import { movieFromJson } from '../types';
 import { toggleSortDirection } from '../utils/util-func';
@@ -10,7 +11,7 @@ const initialState = {
   searchText: '',
   genreFilter: availableFilterOptions[0].id,
   sortField: availableSortingOptions[0].id,
-  sortDirection: 'desc',
+  sortDirection: DESC_ORDER,
   detailMovie: null,
   isLoading: false,
   isShowDetail: false,
@@ -19,7 +20,7 @@ const initialState = {
   foundMoviesCount: 0,
 };
 
-export const fetchMovies = createAsyncThunk('movies/fetchMovies', (data, { getState }) => {
+export const fetchMovies = createAsyncThunk(`${MOVIES_SLICE_NAME}/fetchMovies`, (data, { getState }) => {
   const {
     searchText: search,
     genreFilter,
@@ -34,7 +35,7 @@ export const fetchMovies = createAsyncThunk('movies/fetchMovies', (data, { getSt
 });
 
 const counterSlice = createSlice({
-  name: 'movies',
+  name: MOVIES_SLICE_NAME,
   initialState,
   reducers: {
     setDetailMovie(state, action) {

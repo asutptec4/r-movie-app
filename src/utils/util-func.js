@@ -1,3 +1,5 @@
+import { ASC_ORDER, DESC_ORDER } from '../constant';
+
 export const roundRating = (rating) => {
   return (Math.round(rating * 10) / 10).toFixed(1);
 };
@@ -38,5 +40,5 @@ export const calcLastPage = (totalCount, countPerPage) => {
 };
 
 export const toggleSortDirection = (currentDirection) => {
-  return currentDirection === 'asc' ? 'desc' : 'asc';
+  return currentDirection === ASC_ORDER ? DESC_ORDER : ASC_ORDER;
 };
