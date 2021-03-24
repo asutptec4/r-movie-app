@@ -8,7 +8,7 @@ $img-w: 360px;
   position: relative;
 
   .movie-image {
-    padding: 2px;
+    margin: 0 auto;
     width: $img-w;
     height: calc(4 / 3 * #{$img-w});
     cursor: pointer;
