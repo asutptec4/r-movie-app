@@ -2,15 +2,20 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
+import { defaultHandler } from '../../utils/util-func';
+
 import './Dialog.scss';
 
 const modalRoot = document.getElementById('modal-root');
+const toggleScroll = () => {
+  document.querySelector('html').classList.toggle('scroll-lock');
+};
 
 const Dialog = ({ children, handleClose }) => {
   useEffect(() => {
-    document.querySelector('html').classList.toggle('scroll-lock');
+    toggleScroll();
     return () => {
-      document.querySelector('html').classList.toggle('scroll-lock');
+      toggleScroll();
     };
   });
 
@@ -33,9 +38,13 @@ const Dialog = ({ children, handleClose }) => {
   );
 };
 
+Dialog.defaultProps = {
+  handleClose: defaultHandler,
+};
+
 Dialog.propTypes = {
   children: PropTypes.node.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
 };
 
 export default Dialog;

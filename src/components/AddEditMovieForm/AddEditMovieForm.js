@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { movie } from '../../types/movie';
+import { defaultHandler } from '../../utils/util-func';
 import './AddEditMovieForm.scss';
 
 const AddEditMovieForm = ({ movie, handleSubmit }) => {
   const handleSave = (e) => {
     e.preventDefault();
-    if (handleSubmit) {
-      handleSubmit(movie);
-    }
+    handleSubmit(movie);
   };
 
   return (
@@ -39,6 +38,10 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
       </div>
     </form>
   );
+};
+
+AddEditMovieForm.defaultProps = {
+  handleSubmit: defaultHandler,
 };
 
 AddEditMovieForm.propTypes = {

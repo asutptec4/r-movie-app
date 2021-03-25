@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { selectOption } from '../../types/select-option';
+import { defaultHandler } from '../../utils/util-func';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieListControl.scss';
 
@@ -27,12 +28,8 @@ const MovieListControl = ({ filterOptions, sortOptions, handleFilterChange, hand
 MovieListControl.defaultProps = {
   filterOptions: [],
   sortOptions: [],
-  handleFilterChange: () => {
-    console.warn('MovieListControl handleFilterChange is not provided');
-  },
-  handleSortChange: () => {
-    console.warn('MovieListControl handleSortChange is not provided');
-  },
+  handleFilterChange: defaultHandler,
+  handleSortChange: defaultHandler,
 };
 
 MovieListControl.propTypes = {

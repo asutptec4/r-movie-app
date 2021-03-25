@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { DELETE_ACTION, EDIT_ACTION } from '../../constant';
+import { movieCardOptions } from '../../movie-config';
 import { movie } from '../../types/movie';
+import { defaultHandler } from '../../utils/util-func';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
-
-const editOptions = [
-  { id: EDIT_ACTION, name: 'Edit' },
-  { id: DELETE_ACTION, name: 'Delete' },
-];
 
 const Button = () => {
   return (
@@ -33,7 +29,7 @@ const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
       </div>
       <div className="button">
         <SingleSelectDropdown
-          options={editOptions}
+          options={movieCardOptions}
           customButton={<Button />}
           onOptionChange={(o) => handleCardAction(o?.id, movie)}
         />
@@ -42,10 +38,15 @@ const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
   );
 };
 
+MovieCard.defaultProps = {
+  handleCardAction: defaultHandler,
+  handleCardClick: defaultHandler,
+};
+
 MovieCard.propTypes = {
   movie: movie,
-  handleCardAction: PropTypes.func.isRequired,
-  handleCardClick: PropTypes.func.isRequired,
+  handleCardAction: PropTypes.func,
+  handleCardClick: PropTypes.func,
 };
 
 export default MovieCard;

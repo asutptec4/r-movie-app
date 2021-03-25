@@ -40,7 +40,7 @@ const rejectedReducer = (state) => {
   }
 };
 
-const counterSlice = createSlice({
+const dialogSlice = createSlice({
   name: DIALOG_SLICE_NAME,
   initialState,
   reducers: {
@@ -70,9 +70,9 @@ const counterSlice = createSlice({
   },
 });
 
-export const { openDialog, closeDialog } = counterSlice.actions;
+export const { openDialog, closeDialog } = dialogSlice.actions;
 
-export default counterSlice.reducer;
+export default dialogSlice.reducer;
 
 export const selectDialogMovie = (state) => state.dialog.movie;
 export const selectDialogAction = (state) => state.dialog.action;

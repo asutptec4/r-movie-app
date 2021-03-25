@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { movie } from '../../types/movie';
+import { defaultHandler } from '../../utils/util-func';
 import './DeleteMovieForm.scss';
 
 const DeleteMovieForm = ({ movie, handleSubmit }) => {
   const handleDelete = (e) => {
     e.preventDefault();
-    if (handleSubmit) {
-      handleSubmit(movie);
-    }
+    handleSubmit(movie);
   };
 
   return (
@@ -19,6 +18,10 @@ const DeleteMovieForm = ({ movie, handleSubmit }) => {
       <input className="confirm" type="submit" value="Confirm" onClick={handleDelete} />
     </form>
   );
+};
+
+DeleteMovieForm.defaultProps = {
+  handleSubmit: defaultHandler,
 };
 
 DeleteMovieForm.propTypes = {

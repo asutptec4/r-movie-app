@@ -34,7 +34,7 @@ export const fetchMovies = createAsyncThunk(`${MOVIES_SLICE_NAME}/fetchMovies`, 
   return MovieApi.getAll({ search, genres, sortBy, sortOrder, offset, limit });
 });
 
-const counterSlice = createSlice({
+const moviesSlice = createSlice({
   name: MOVIES_SLICE_NAME,
   initialState,
   reducers: {
@@ -89,9 +89,9 @@ export const {
   setGenreFilter,
   setSortField,
   setCurrentPage,
-} = counterSlice.actions;
+} = moviesSlice.actions;
 
-export default counterSlice.reducer;
+export default moviesSlice.reducer;
 
 export const selectMovies = (state) => state.movies.movies;
 export const selectDetailMovie = (state) => state.movies.detailMovie;

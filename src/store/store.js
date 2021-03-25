@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import dialogSlice from '../reducers/dialogSlice';
-import movieReducer from '../reducers/moviesSlice';
+import dialogReducer from '../reducers/dialogSlice';
+import moviesReducer from '../reducers/moviesSlice';
 
 const reducer = {
-  movies: movieReducer,
-  dialog: dialogSlice,
+  movies: moviesReducer,
+  dialog: dialogReducer,
 };
 
 export default configureStore({

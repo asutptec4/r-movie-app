@@ -42,3 +42,7 @@ export const calcLastPage = (totalCount, countPerPage) => {
 export const toggleSortDirection = (currentDirection) => {
   return currentDirection === ASC_ORDER ? DESC_ORDER : ASC_ORDER;
 };
+
+export const defaultHandler = (...params) => {
+  console.warn('Handler is not provided', params);
+};

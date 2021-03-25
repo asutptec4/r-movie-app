@@ -1,6 +1,7 @@
 import { func } from 'prop-types';
 import React, { useRef } from 'react';
 
+import { defaultHandler } from '../../utils/util-func';
 import './GlobalSearch.scss';
 
 const GlobalSearch = ({ handleSearch }) => {
@@ -31,6 +32,10 @@ const GlobalSearch = ({ handleSearch }) => {
       </button>
     </div>
   );
+};
+
+GlobalSearch.defaultProps = {
+  handleSearch: defaultHandler,
 };
 
 GlobalSearch.propTypes = {

@@ -29,11 +29,7 @@ const buildQuery = (params) => {
   return requestParam;
 };
 
-const responseHandler = (r) => ({
-  data: r.data,
-  status: r.status,
-  statusText: r.statusText,
-});
+const responseHandler = ({ data, status, statusText }) => ({ data, status, statusText });
 
 export const MovieApi = {
   getAll: (params) => instance.get('', buildQuery(params)).then(responseHandler),

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { movie } from '../../types';
-import { ratingToStr } from '../../utils/util-func';
+import { defaultHandler, ratingToStr } from '../../utils/util-func';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MovieDescription.scss';
 
@@ -37,7 +37,7 @@ const MovieDescription = ({ movie, closeButtonHandler }) => {
 };
 
 MovieDescription.defaultProps = {
-  closeButtonHandler: () => {},
+  closeButtonHandler: defaultHandler,
 };
 
 MovieDescription.propTypes = { closeButtonHandler: PropTypes.func, movie: movie };

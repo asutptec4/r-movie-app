@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { selectOption } from '../../types/select-option';
 import { useComponentDidUpdate } from '../../utils/custom-hooks';
+import { defaultHandler } from '../../utils/util-func';
 import './SingleSelectDropdown.scss';
 
 const getSelected = (options) => {
@@ -55,9 +56,7 @@ const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
 };
 
 SingleSelectDropdown.defaultProps = {
-  onOptionChange: () => {
-    console.warn('SingleSelectDropdown handler is not provided');
-  },
+  onOptionChange: defaultHandler,
 };
 
 SingleSelectDropdown.propTypes = {

@@ -1,7 +1,7 @@
 import { number, func } from 'prop-types';
 import React from 'react';
 
-import { calcLastPage } from '../../utils/util-func';
+import { calcLastPage, defaultHandler } from '../../utils/util-func';
 
 import './PageControl.scss';
 
@@ -50,9 +50,7 @@ PageControl.defaultProps = {
   currentPage: 1,
   itemPerPage: 1,
   totalItemCount: 1,
-  handlePageChange: () => {
-    console.warn('PageControl handleSortChange is not provided');
-  },
+  handlePageChange: defaultHandler,
 };
 
 PageControl.propTypes = {
