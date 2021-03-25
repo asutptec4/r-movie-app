@@ -42,8 +42,9 @@ $img-w: 280px;
     padding: 0 2em;
 
     .movie-image {
-      padding: 10px;
+      min-width: $img-w;
       width: $img-w;
+      min-height: calc(4 / 3 * #{$img-w});
       height: calc(4 / 3 * #{$img-w});
     }
 

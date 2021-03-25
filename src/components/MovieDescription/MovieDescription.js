@@ -17,7 +17,9 @@ const MovieDescription = ({ movie, closeButtonHandler }) => {
       </div>
       {movie?.id && (
         <div className="movie-description">
-          <MoviePoster imageUrl={movie.poster} className="movie-image" />
+          <div className="movie-image">
+            <MoviePoster imageUrl={movie.poster} />
+          </div>
           <div className="description">
             <p className="movie-title">
               <span className="title">{movie.title}</span>
