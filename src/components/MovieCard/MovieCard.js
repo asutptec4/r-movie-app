@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Icon from '../../assets/card.jpg';
+import { movieCardOptions } from '../../movie-config';
 import { movie } from '../../types/movie';
+import { defaultHandler } from '../../utils/util-func';
+import MoviePoster from '../MoviePoster/MoviePoster';
 import SingleSelectDropdown from '../SingleSelectDropdown/SingleSelectDropdown';
 import './MovieCard.scss';
-
-const editOptions = [
-  { id: 'edit', name: 'Edit' },
-  { id: 'delete', name: 'Delete' },
-];
 
 const Button = () => {
   return (
@@ -22,7 +19,9 @@ const Button = () => {
 const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
   return (
     <div className="movie-card">
-      <img src={Icon} alt="Movie poster" className="movie-image" onClick={(e) => handleCardClick(movie)}></img>
+      <div className="movie-image" onClick={(e) => handleCardClick(movie)}>
+        <MoviePoster imageUrl={movie.poster} />
+      </div>
       <div className="movie-desc">
         <span className="title">{movie.title}</span>
         <span className="genre">{movie.genres ? movie.genres.join(' ') : ''}</span>
@@ -30,19 +29,24 @@ const MovieCard = ({ movie, handleCardAction, handleCardClick }) => {
       </div>
       <div className="button">
         <SingleSelectDropdown
-          options={editOptions}
+          options={movieCardOptions}
           customButton={<Button />}
-          onOptionChange={(o) => handleCardAction(o, movie)}
+          onOptionChange={(o) => handleCardAction(o?.id, movie)}
         />
       </div>
     </div>
   );
 };
 
+MovieCard.defaultProps = {
+  handleCardAction: defaultHandler,
+  handleCardClick: defaultHandler,
+};
+
 MovieCard.propTypes = {
   movie: movie,
-  handleCardAction: PropTypes.func.isRequired,
-  handleCardClick: PropTypes.func.isRequired,
+  handleCardAction: PropTypes.func,
+  handleCardClick: PropTypes.func,
 };
 
 export default MovieCard;

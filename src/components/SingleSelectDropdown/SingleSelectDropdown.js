@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import { selectOption } from '../../types/select-option';
+import { useComponentDidUpdate } from '../../utils/custom-hooks';
+import { defaultHandler } from '../../utils/util-func';
 import './SingleSelectDropdown.scss';
 
 const getSelected = (options) => {
@@ -22,6 +24,10 @@ const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
     setIsOpen(false);
     onOptionChange(value);
   };
+
+  useComponentDidUpdate(() => {
+    setSelectedOption(getSelected(options));
+  }, [options]);
 
   return (
     <div className="single-select-dropdown-container">
@@ -50,9 +56,7 @@ const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
 };
 
 SingleSelectDropdown.defaultProps = {
-  onOptionChange: () => {
-    console.warn('handler is not provided');
-  },
+  onOptionChange: defaultHandler,
 };
 
 SingleSelectDropdown.propTypes = {

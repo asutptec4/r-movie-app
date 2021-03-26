@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { movie } from '../../types/movie';
+import { defaultHandler } from '../../utils/util-func';
 import './DeleteMovieForm.scss';
 
-const DeleteMovieForm = ({ movie, handleEditorClose }) => {
+const DeleteMovieForm = ({ movie, handleSubmit }) => {
   const handleDelete = (e) => {
     e.preventDefault();
-    if (handleEditorClose) {
-      handleEditorClose();
-    }
+    handleSubmit(movie);
   };
 
   return (
@@ -21,9 +20,13 @@ const DeleteMovieForm = ({ movie, handleEditorClose }) => {
   );
 };
 
+DeleteMovieForm.defaultProps = {
+  handleSubmit: defaultHandler,
+};
+
 DeleteMovieForm.propTypes = {
   movie: movie,
-  handleEditorClose: PropTypes.func,
+  handleSubmit: PropTypes.func,
 };
 
 export default DeleteMovieForm;
