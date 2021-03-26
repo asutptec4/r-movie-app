@@ -16,12 +16,7 @@ const GlobalSearch = ({ handleSearch }) => {
   return (
     <div className="global-search">
       <span className="title">Find your movie</span>
-      <input
-        className="input"
-        placeholder="What do you want to search?"
-        ref={searchInput}
-        onKeyDown={handleKeyDown}
-      ></input>
+      <input className="input" placeholder="What do you want to search?" ref={searchInput} onKeyDown={handleKeyDown} />
       <button
         className="button"
         onClick={() => {
