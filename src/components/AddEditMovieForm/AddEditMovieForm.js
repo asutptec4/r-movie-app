@@ -1,42 +1,75 @@
+import { Field, Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React from 'react';
+import * as Yup from 'yup';
 
+import { availableGenres } from '../../movie-config';
 import { movie } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
+import TextInput from '../TextInput/TextInput';
 import './AddEditMovieForm.scss';
 
 const AddEditMovieForm = ({ movie, handleSubmit }) => {
-  const handleSave = (e) => {
-    e.preventDefault();
-    handleSubmit(movie);
-  };
-
   return (
-    <form className="add-edit-movie-form">
-      <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
-      {movie.id && (
-        <>
-          <label htmlFor="id">Movie ID:</label>
-          <div>{movie.id}</div>
-        </>
-      )}
-      <label htmlFor="title">Title:</label>
-      <input type="text" name="title" id="title" placeholder="Title here" value={movie.title} />
-      <label htmlFor="releaseDate">Release Date:</label>
-      <input type="date" name="releaseDate" id="releaseDate" placeholder="Select date" />
-      <label htmlFor="url">Movie URL:</label>
-      <input type="url" name="url" id="url" placeholder="Movie URL here" />
-      <label htmlFor="genre">Genre:</label>
-      <input type="text" name="genre" id="genre" placeholder="Select genres" />
-      <label htmlFor="overview">Overview:</label>
-      <input type="text" name="overview" id="overview" placeholder="Overview here" />
-      <label htmlFor="runtime">Runtime:</label>
-      <input type="text" name="runtime" id="runtime" placeholder="Runtime here" />
-      <div className="button-container">
-        <input className="reset" type="reset" value="Reset" />
-        <input className="save" type="submit" value="Save" onClick={handleSave} />
-      </div>
-    </form>
+    <Formik
+      initialValues={{
+        id: movie.id,
+        title: movie.title,
+        releaseDate: movie.releaseDate,
+        poster: movie.poster,
+        genres: '',
+        overview: movie.overview,
+        runtime: movie.runtime,
+      }}
+      validationSchema={Yup.object({
+        title: Yup.string().required('This is a required field.'),
+        poster: Yup.string().url('Must be a valid url.').required('This is a required field.'),
+        releaseDate: Yup.date(),
+        // genres: Yup.array().of(Yup.string()),
+        genres: Yup.string(),
+        overview: Yup.string().required('This is a required field.'),
+        runtime: Yup.number()
+          .typeError('Must be a number.')
+          .min(0, 'Must be more than 0.')
+          .required('This is a required field.'),
+      })}
+      onSubmit={(values) => {
+        handleSubmit(values);
+      }}
+    >
+      <Form className="add-edit-movie-form">
+        <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
+        {movie.id && (
+          <>
+            <div className="app-form-label">Movie ID:</div>
+            <div>{movie.id}</div>
+          </>
+        )}
+        <TextInput label="Title:" name="title" placeholder="Title here" type="text" />
+        <TextInput label="Release Date:" name="releaseDate" placeholder="Select date" type="date" />
+        <TextInput label="Movie URL:" name="poster" placeholder="Movie URL here" type="text" />
+        <label htmlFor="genres" className="app-form-label">
+          Genre:
+        </label>
+        <Field id="genres" name="genres" as="select" placeholder="Select genres">
+          {availableGenres.map((g) => (
+            <option value={g} key={g}>
+              {g}
+            </option>
+          ))}
+        </Field>
+        <TextInput label="Overview:" name="overview" placeholder="Overview here" type="text" />
+        <TextInput label="Runtime:" name="runtime" placeholder="Runtime here" type="text" />
+        <div className="button-container">
+          <button className="reset" type="reset">
+            Reset
+          </button>
+          <button className="save" type="submit">
+            Save
+          </button>
+        </div>
+      </Form>
+    </Formik>
   );
 };
 
