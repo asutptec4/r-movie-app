@@ -35,3 +35,11 @@ export const usePrevValue = (value) => {
 
   return prevValueRef.current;
 };
+
+export const useToggle = (initialState) => {
+  const [value, setValue] = useState(initialState);
+  const toggle = () => {
+    setValue(!value);
+  };
+  return [value, toggle];
+};
