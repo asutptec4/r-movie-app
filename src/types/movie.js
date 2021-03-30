@@ -22,7 +22,7 @@ export const movieToJson = (movie) => ({
   title: movie.title,
   release_date: movie.releaseDate,
   poster_path: movie.poster,
-  // genres: movie.genres,
+  genres: movie.genres,
   overview: movie.overview,
   runtime: Number(movie.runtime),
 });
