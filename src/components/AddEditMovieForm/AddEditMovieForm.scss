@@ -18,6 +18,13 @@
     .save {
       @include app-button($item-color, $label-color);
       margin-left: 2em;
+
+      &:disabled {
+        background-color: $bg-color;
+        color: $label-color;
+        border: 1px solid $bg-color;
+        cursor: not-allowed;
+      }
     }
 
     .reset {

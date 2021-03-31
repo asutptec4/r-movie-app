@@ -15,12 +15,12 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
     <Formik
       initialValues={{
         id: movie.id,
-        title: movie.title,
-        releaseDate: movie.releaseDate,
-        poster: movie.poster,
+        title: movie.title || '',
+        releaseDate: movie.releaseDate || '',
+        poster: movie.poster || '',
         genres: movie.genres || [],
-        overview: movie.overview,
-        runtime: movie.runtime,
+        overview: movie.overview || '',
+        runtime: movie.runtime || '',
       }}
       validationSchema={Yup.object({
         title: Yup.string().required('This is a required field.'),
@@ -37,29 +37,36 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
         handleSubmit(values);
       }}
     >
-      <Form className="add-edit-movie-form">
-        <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
-        {movie.id && (
-          <>
-            <div className="app-form-label">Movie ID:</div>
-            <div>{movie.id}</div>
-          </>
-        )}
-        <TextInput label="Title:" name="title" placeholder="Title here" type="text" />
-        <TextInput label="Release Date:" name="releaseDate" placeholder="Select date" type="date" />
-        <TextInput label="Movie URL:" name="poster" placeholder="Movie URL here" type="text" />
-        <MultiSelectInput label="Genre:" availableOptions={availableGenres} placeholder="Select Genre" name="genres" />
-        <TextInput label="Overview:" name="overview" placeholder="Overview here" type="text" />
-        <TextInput label="Runtime:" name="runtime" placeholder="Runtime here" type="text" />
-        <div className="button-container">
-          <button className="reset" type="reset">
-            Reset
-          </button>
-          <button className="save" type="submit">
-            Save
-          </button>
-        </div>
-      </Form>
+      {({ isSubmitting }) => (
+        <Form className="add-edit-movie-form">
+          <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
+          {movie.id && (
+            <>
+              <div className="app-form-label">Movie ID:</div>
+              <div>{movie.id}</div>
+            </>
+          )}
+          <TextInput label="Title:" name="title" placeholder="Title here" type="text" />
+          <TextInput label="Release Date:" name="releaseDate" placeholder="Select date" type="date" />
+          <TextInput label="Movie URL:" name="poster" placeholder="Movie URL here" type="text" />
+          <MultiSelectInput
+            label="Genre:"
+            availableOptions={availableGenres}
+            placeholder="Select Genre"
+            name="genres"
+          />
+          <TextInput label="Overview:" name="overview" placeholder="Overview here" type="text" />
+          <TextInput label="Runtime:" name="runtime" placeholder="Runtime here" type="text" />
+          <div className="button-container">
+            <button className="reset" type="reset">
+              Reset
+            </button>
+            <button className="save" disabled={isSubmitting} type="submit">
+              Save
+            </button>
+          </div>
+        </Form>
+      )}
     </Formik>
   );
 };
