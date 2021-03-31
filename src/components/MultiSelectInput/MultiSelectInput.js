@@ -7,7 +7,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import './MultiSelectInput.scss';
 
 const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props }) => {
-  const [showList, toggle] = useToggle();
+  const [showList, toggleShowList] = useToggle();
   const [, meta, helper] = useField(props);
 
   const handleOptionOnChange = (state, label) => {
@@ -32,7 +32,7 @@ const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props 
         {label}
       </label>
       <div className="multi-select-input">
-        <button onClick={toggle} className="button" type="button">
+        <button onClick={toggleShowList} className="button" type="button">
           {meta.value.join(', ') || placeholder || 'Select'}
         </button>
         {showList && (

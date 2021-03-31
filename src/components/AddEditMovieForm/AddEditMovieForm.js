@@ -1,13 +1,13 @@
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React from 'react';
-import * as Yup from 'yup';
 
 import { availableGenres } from '../../movie-config';
 import { movie } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
 import MultiSelectInput from '../MultiSelectInput/MultiSelectInput';
 import TextInput from '../TextInput/TextInput';
+import validationSchema from './AddEditMovieFormValidationSchema';
 import './AddEditMovieForm.scss';
 
 const AddEditMovieForm = ({ movie, handleSubmit }) => {
@@ -22,17 +22,7 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
         overview: movie.overview || '',
         runtime: movie.runtime || '',
       }}
-      validationSchema={Yup.object({
-        title: Yup.string().required('This is a required field.'),
-        poster: Yup.string().url('Must be a valid url.').required('This is a required field.'),
-        releaseDate: Yup.date(),
-        genres: Yup.array().of(Yup.string()).min(1, 'Select at least one genre.').required(),
-        overview: Yup.string().required('This is a required field.'),
-        runtime: Yup.number()
-          .typeError('Must be a number.')
-          .min(0, 'Must be more than 0.')
-          .required('This is a required field.'),
-      })}
+      validationSchema={validationSchema}
       onSubmit={(values) => {
         handleSubmit(values);
       }}

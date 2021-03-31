@@ -7,7 +7,7 @@ import { defaultHandler } from '../../utils/util-func';
 import './Checkbox.scss';
 
 const Checkbox = ({ label, initialState, handleOnChange, className }) => {
-  const [isChecked, toggle] = useToggle(initialState);
+  const [isChecked, toggleIsChecked] = useToggle(initialState);
 
   useComponentDidUpdate(() => {
     handleOnChange(isChecked);
@@ -16,7 +16,7 @@ const Checkbox = ({ label, initialState, handleOnChange, className }) => {
   return (
     <label className={`checkbox ${className}`.trim()}>
       {label}
-      <input type="checkbox" checked={isChecked} onChange={toggle} />
+      <input type="checkbox" checked={isChecked} onChange={toggleIsChecked} />
       <span className="checkmark"></span>
     </label>
   );
