@@ -24,7 +24,7 @@ export const movieToJson = (movie) => ({
   poster_path: movie.poster,
   genres: movie.genres,
   overview: movie.overview,
-  runtime: movie.runtime,
+  runtime: Number(movie.runtime),
 });
 
 export const movieFromJson = (json) => ({

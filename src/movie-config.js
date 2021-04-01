@@ -1,5 +1,23 @@
 import { DELETE_ACTION, EDIT_ACTION } from './constant';
 
+export const availableGenres = [
+  'Action',
+  'Adventure',
+  'Animation',
+  'Comedy',
+  'Crime',
+  'Documentary',
+  'Drama',
+  'Fantasy',
+  'Family',
+  'Horror',
+  'Mystery',
+  'Romance',
+  'Science Fiction',
+  'Thriller',
+  'War',
+];
+
 export const availableFilterOptions = [
   { id: 'All', name: 'All' },
   { id: 'Action', name: 'Action' },

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { MovieApi } from '../api/api';
 import { REQUEST_PENDING, REQUEST_IDLE, REQUEST_COMPLETED, REQUEST_ERROR, DIALOG_SLICE_NAME } from '../constant';
+import { movieToJson } from '../types';
 
 const initialState = {
   movie: null,
@@ -11,11 +12,11 @@ const initialState = {
 };
 
 export const addMovie = createAsyncThunk(`${DIALOG_SLICE_NAME}/addMovie`, (movie) => {
-  return MovieApi.create(movie);
+  return MovieApi.create(movieToJson(movie));
 });
 
 export const editMovie = createAsyncThunk(`${DIALOG_SLICE_NAME}/editMovie`, (movie) => {
-  return MovieApi.update(movie);
+  return MovieApi.update(movieToJson(movie));
 });
 
 export const deleteMovie = createAsyncThunk(`${DIALOG_SLICE_NAME}/deleteMovie`, (movie) => {

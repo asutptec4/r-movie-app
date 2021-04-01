@@ -1,0 +1,30 @@
+@import '../../scss/index.scss';
+
+.multi-select-input {
+  position: relative;
+  display: inline-block;
+
+  .button {
+    @extend .app-form-input !optional;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .select-options {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px $bg-color;
+    padding: 1em;
+    width: 100%;
+    max-height: 200px;
+    z-index: 1;
+    background-color: $content-bg-color;
+    overflow-y: auto;
+
+    .option {
+      margin-bottom: 0.5em;
+    }
+  }
+}

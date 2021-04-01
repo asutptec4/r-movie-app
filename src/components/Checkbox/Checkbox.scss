@@ -1,0 +1,51 @@
+@import '../../scss/index.scss';
+
+.checkbox {
+    display: block;
+    position: relative;
+    padding-left: 1.5em;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover input ~ .checkmark {
+      background-color: $item-color;
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      &:checked ~ .checkmark {
+        background-color: $item-color;
+
+        &:after {
+          display: block;
+        }
+      }
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1em;
+      width: 1em;
+      background-color: $label-color;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: none;
+        left: 0.3em;
+        top: 0.1em;
+        width: 0.25em;
+        height: 0.5em;
+        border: solid $label-color;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
