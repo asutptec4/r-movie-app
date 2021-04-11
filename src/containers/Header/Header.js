@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescriptionWithRouteLoading from '../../components/MovieDescription/MovieDescriptionWithRouteLoading';
-import NotFound from '../../components/NotFound/NotFound';
 import { ADD_ACTION } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
 import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
@@ -20,10 +19,10 @@ const Header = () => {
 
   return (
     <header className={'header'}>
+      <div className="logo app-logo">NetflixRoulette</div>
       <Switch>
-        <Route exact path={['/movies', '/search']}>
+        <Route exact path={['/movies', '/search', '/search/:query']}>
           <div className="control-area">
-            <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
               <button
                 className="control-button"
@@ -36,7 +35,6 @@ const Header = () => {
           <GlobalSearch handleSearch={handleSearch} />
         </Route>
         <Route exact path="/movies/:movieId" component={MovieDescriptionWithRouteLoading} />
-        <Route path="*" component={NotFound} />
       </Switch>
     </header>
   );

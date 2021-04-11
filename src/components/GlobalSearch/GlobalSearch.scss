@@ -2,7 +2,7 @@
 
 .global-search {
   min-height: 50px;
-  margin: 20px 120px;
+  margin: 70px 120px;
 
   .title {
     display: block;
@@ -32,5 +32,6 @@
 @media screen and (max-width: 800px) {
   .global-search {
     margin: 1em auto;
+    min-width: 600px;
   }
 }

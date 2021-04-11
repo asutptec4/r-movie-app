@@ -17,10 +17,12 @@ const App = () => {
         <Switch>
           <Route path={['/movies', '/search']}>
             <Header />
-            <main className="content">
-              <ErrorBoundary>
-                <MovieListContainer />
-              </ErrorBoundary>
+            <main>
+              <div className="content">
+                <ErrorBoundary>
+                  <MovieListContainer />
+                </ErrorBoundary>
+              </div>
             </main>
           </Route>
           <Route exact path="/">

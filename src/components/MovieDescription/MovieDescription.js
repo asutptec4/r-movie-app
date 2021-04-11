@@ -10,7 +10,6 @@ const MovieDescription = ({ movie, closeButtonHandler }) => {
   return (
     <section className="movie-description-container">
       <div className="movie-description-buttons">
-        <span className="logo app-logo">NetflixRoulette</span>
         <div className="icon-container" onClick={closeButtonHandler}>
           <span className="icon-glass"></span>
         </div>
