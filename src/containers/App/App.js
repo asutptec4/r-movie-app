@@ -15,7 +15,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/movies">
+          <Route path={['/movies', '/search']}>
             <Header />
             <main className="content">
               <ErrorBoundary>

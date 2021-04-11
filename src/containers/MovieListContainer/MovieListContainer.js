@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
@@ -11,8 +12,6 @@ import { openDialog } from '../../reducers/dialogSlice';
 import {
   selectMovies,
   selectLoading,
-  setDetailMovie,
-  showDetail,
   fetchMovies,
   selectFoundMoviesCount,
   selectGenreFilter,
@@ -35,14 +34,14 @@ const MovieListContainer = () => {
   const appliedFilter = useSelector(selectGenreFilter);
   const currentPage = useSelector(selectCurrentPage);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleCardAction = useCallback((action, movie) => {
     dispatch(openDialog({ action, movie }));
   }, []);
 
   const handleCardClick = useCallback((movie) => {
-    dispatch(setDetailMovie(movie));
-    dispatch(showDetail());
+    history.push(`/movies/${movie.id}`);
   }, []);
 
   const handleFilterChange = useCallback((option) => {

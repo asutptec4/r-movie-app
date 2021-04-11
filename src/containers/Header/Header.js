@@ -1,23 +1,16 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
-import MovieDescription from '../../components/MovieDescription/MovieDescription';
+import MovieDescriptionWithRouteLoading from '../../components/MovieDescription/MovieDescriptionWithRouteLoading';
+import NotFound from '../../components/NotFound/NotFound';
 import { ADD_ACTION } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
-import {
-  selectDetailMovie,
-  selectShowDetail,
-  hideDetail,
-  setSearchText,
-  fetchMovies,
-} from '../../reducers/moviesSlice';
-import { useComponentDidUpdate } from '../../utils/custom-hooks';
+import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
 import './Header.scss';
 
 const Header = () => {
-  const isShowDetail = useSelector(selectShowDetail);
-  const detailMovie = useSelector(selectDetailMovie);
   const dispatch = useDispatch();
 
   const handleSearch = (searchText) => {
@@ -25,18 +18,10 @@ const Header = () => {
     dispatch(fetchMovies());
   };
 
-  useComponentDidUpdate(() => {
-    if (isShowDetail) {
-      window.scrollTo(0, 0);
-    }
-  }, [detailMovie]);
-
   return (
-    <header className={'header ' + (isShowDetail ? 'large' : '')}>
-      {isShowDetail ? (
-        <MovieDescription movie={detailMovie} closeButtonHandler={() => dispatch(hideDetail())}></MovieDescription>
-      ) : (
-        <>
+    <header className={'header'}>
+      <Switch>
+        <Route exact path={['/movies', '/search']}>
           <div className="control-area">
             <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
@@ -49,8 +34,10 @@ const Header = () => {
             </div>
           </div>
           <GlobalSearch handleSearch={handleSearch} />
-        </>
-      )}
+        </Route>
+        <Route exact path="/movies/:movieId" component={MovieDescriptionWithRouteLoading} />
+        <Route path="*" component={NotFound} />
+      </Switch>
     </header>
   );
 };
