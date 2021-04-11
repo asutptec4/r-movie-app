@@ -17,7 +17,7 @@ const MovieDescriptionWithRouteLoading = () => {
   const dispatch = useDispatch();
 
   const handleClose = useCallback(() => {
-    history.push('/movies');
+    history.goBack();
     dispatch(resetMovie());
   }, []);
 

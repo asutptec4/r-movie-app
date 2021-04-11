@@ -1,15 +1,39 @@
-import { func } from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
-import { defaultHandler } from '../../utils/util-func';
+import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
 import './GlobalSearch.scss';
 
-const GlobalSearch = ({ handleSearch }) => {
+const GlobalSearch = () => {
   const searchInput = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+  const match = useRouteMatch({ path: '/search/:query', strict: true });
+
+  useEffect(() => {
+    if (match) {
+      const searchText = match.params?.query;
+      searchInput.current.value = searchText;
+      dispatch(setSearchText(searchText));
+      dispatch(fetchMovies());
+    }
+  }, [match]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      handleSearch(searchInput.current.value);
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    const searchText = searchInput.current.value;
+    history.push(`/search/${searchText}`);
+    if (searchText === '') {
+      dispatch(setSearchText(searchText));
+      dispatch(fetchMovies());
     }
   };
 
@@ -17,24 +41,11 @@ const GlobalSearch = ({ handleSearch }) => {
     <div className="global-search">
       <span className="title">Find your movie</span>
       <input className="input" placeholder="What do you want to search?" ref={searchInput} onKeyDown={handleKeyDown} />
-      <button
-        className="button"
-        onClick={() => {
-          handleSearch(searchInput.current.value);
-        }}
-      >
+      <button className="button" onClick={handleSearch}>
         Search
       </button>
     </div>
   );
-};
-
-GlobalSearch.defaultProps = {
-  handleSearch: defaultHandler,
-};
-
-GlobalSearch.propTypes = {
-  handleSearch: func,
 };
 
 export default GlobalSearch;

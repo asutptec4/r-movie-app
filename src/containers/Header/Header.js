@@ -6,22 +6,17 @@ import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescriptionWithRouteLoading from '../../components/MovieDescription/MovieDescriptionWithRouteLoading';
 import { ADD_ACTION } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
-import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
 import './Header.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const handleSearch = (searchText) => {
-    dispatch(setSearchText(searchText));
-    dispatch(fetchMovies());
-  };
-
   return (
     <header className={'header'}>
       <div className="logo app-logo">NetflixRoulette</div>
       <Switch>
-        <Route exact path={['/movies', '/search', '/search/:query']}>
+        <Route exact path="/movies/:movieId" component={MovieDescriptionWithRouteLoading} />
+        <Route path={['/movies', '/search']}>
           <div className="control-area">
             <div className="user-controls">
               <button
@@ -32,9 +27,8 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <GlobalSearch handleSearch={handleSearch} />
+          <GlobalSearch />
         </Route>
-        <Route exact path="/movies/:movieId" component={MovieDescriptionWithRouteLoading} />
       </Switch>
     </header>
   );
