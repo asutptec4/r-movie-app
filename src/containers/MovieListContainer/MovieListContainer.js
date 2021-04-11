@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MovieList from '../../components/MovieList/MovieList';
@@ -57,10 +57,6 @@ const MovieListContainer = () => {
 
   const handlePageChange = useCallback((newPage) => {
     dispatch(setCurrentPage(newPage));
-    dispatch(fetchMovies());
-  }, []);
-
-  useEffect(() => {
     dispatch(fetchMovies());
   }, []);
 

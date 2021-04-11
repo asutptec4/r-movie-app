@@ -9,7 +9,7 @@ import { toggleSortDirection } from '../utils/util-func';
 const initialState = {
   movies: [],
   searchText: '',
-  genreFilter: availableFilterOptions[0].id,
+  genreFilter: null,
   sortField: availableSortingOptions[0].id,
   sortDirection: DESC_ORDER,
   detailMovie: null,
