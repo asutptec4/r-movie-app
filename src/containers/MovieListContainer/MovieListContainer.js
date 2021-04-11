@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import PageControl from '../../components/PageControl/PageControl';
+import { MOVIES_PATH } from '../../constant';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
 import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../../movie-config';
@@ -41,7 +42,7 @@ const MovieListContainer = () => {
   }, []);
 
   const handleCardClick = useCallback((movie) => {
-    history.push(`/movies/${movie.id}`);
+    history.push(`${MOVIES_PATH}/${movie.id}`);
   }, []);
 
   const handleFilterChange = useCallback((option) => {

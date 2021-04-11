@@ -13,3 +13,7 @@ export const DETAILS_SLICE_NAME = 'details';
 
 export const ASC_ORDER = 'asc';
 export const DESC_ORDER = 'desc';
+
+export const SEARCH_PATH = '/search';
+export const MOVIES_PATH = '/movies';
+export const NOT_FOUND_PATH = '/not-found';

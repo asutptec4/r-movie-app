@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import NotFound from '../../components/NotFound/NotFound';
+import { MOVIES_PATH, NOT_FOUND_PATH, SEARCH_PATH } from '../../constant';
 import store from '../../store/store';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -15,7 +16,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path={['/movies', '/search']}>
+          <Route path={[MOVIES_PATH, SEARCH_PATH]}>
             <Header />
             <main>
               <div className="content">
@@ -25,10 +26,11 @@ const App = () => {
               </div>
             </main>
           </Route>
+          <Route path={NOT_FOUND_PATH} component={NotFound} />
           <Route exact path="/">
-            <Redirect to="/movies" />
+            <Redirect to={MOVIES_PATH} />
           </Route>
-          <Route path="*" component={NotFound} />
+          <Redirect to={NOT_FOUND_PATH} />
         </Switch>
       </Router>
       <Footer />

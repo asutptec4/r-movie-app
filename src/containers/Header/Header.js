@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
 import MovieDescriptionWithRouteLoading from '../../components/MovieDescription/MovieDescriptionWithRouteLoading';
-import { ADD_ACTION } from '../../constant';
+import { ADD_ACTION, MOVIES_PATH } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
 import './Header.scss';
 
@@ -15,8 +15,8 @@ const Header = () => {
     <header className={'header'}>
       <div className="logo app-logo">NetflixRoulette</div>
       <Switch>
-        <Route exact path="/movies/:movieId" component={MovieDescriptionWithRouteLoading} />
-        <Route path={['/movies', '/search']}>
+        <Route exact path={`${MOVIES_PATH}/:movieId`} component={MovieDescriptionWithRouteLoading} />
+        <Route path="*">
           <div className="control-area">
             <div className="user-controls">
               <button
