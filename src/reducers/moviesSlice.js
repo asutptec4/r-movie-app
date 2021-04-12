@@ -80,3 +80,4 @@ export const selectFoundMoviesCount = (state) => state.movies.foundMoviesCount;
 export const selectGenreFilter = (state) => state.movies.genreFilter;
 export const selectSortField = (state) => state.movies.sortField;
 export const selectCurrentPage = (state) => state.movies.currentPage;
+export const selectSearchText = (state) => state.movies.searchText;

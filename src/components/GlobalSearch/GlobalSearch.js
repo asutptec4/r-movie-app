@@ -1,26 +1,24 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
+import { SEARCH_PATH } from '../../constant';
+import { fetchMovies, selectSearchText, setSearchText } from '../../reducers/moviesSlice';
+import { useOnRouteMatch } from '../../utils/custom-hooks';
 import './GlobalSearch.scss';
 
 const GlobalSearch = () => {
   const searchInput = useRef(null);
 
   const dispatch = useDispatch();
+  const searchText = useSelector(selectSearchText);
 
   const history = useHistory();
-  const match = useRouteMatch({ path: '/search/:query', strict: true });
 
-  useEffect(() => {
-    if (match) {
-      const searchText = match.params?.query;
-      searchInput.current.value = searchText;
-      dispatch(setSearchText(searchText));
-      dispatch(fetchMovies());
-    }
-  }, [match]);
+  const makeSearch = (searchText) => {
+    dispatch(setSearchText(searchText));
+    dispatch(fetchMovies());
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -30,12 +28,21 @@ const GlobalSearch = () => {
 
   const handleSearch = () => {
     const searchText = searchInput.current.value;
-    history.push(`/search/${searchText}`);
+    history.push(`${SEARCH_PATH}/${searchText}`);
     if (searchText === '') {
-      dispatch(setSearchText(searchText));
-      dispatch(fetchMovies());
+      makeSearch(searchText);
     }
   };
+
+  useOnRouteMatch({ path: `${SEARCH_PATH}/:query`, strict: true }, (match) => {
+    if (match) {
+      makeSearch(match.params?.query);
+    }
+  });
+
+  useEffect(() => {
+    searchInput.current.value = searchText;
+  }, [searchText]);
 
   return (
     <div className="global-search">
