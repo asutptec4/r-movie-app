@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import MovieList from '../../components/MovieList/MovieList';
 import MovieListControl from '../../components/MovieListControl/MovieListControl';
 import PageControl from '../../components/PageControl/PageControl';
+import { MOVIES_PATH } from '../../constant';
 import WithLoading from '../../hoc/WithLoading';
 import WithNoFound from '../../hoc/WithNoFound';
 import { availableFilterOptions, availableSortingOptions, moviesPerPage } from '../../movie-config';
@@ -11,8 +13,6 @@ import { openDialog } from '../../reducers/dialogSlice';
 import {
   selectMovies,
   selectLoading,
-  setDetailMovie,
-  showDetail,
   fetchMovies,
   selectFoundMoviesCount,
   selectGenreFilter,
@@ -35,14 +35,14 @@ const MovieListContainer = () => {
   const appliedFilter = useSelector(selectGenreFilter);
   const currentPage = useSelector(selectCurrentPage);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleCardAction = useCallback((action, movie) => {
     dispatch(openDialog({ action, movie }));
   }, []);
 
   const handleCardClick = useCallback((movie) => {
-    dispatch(setDetailMovie(movie));
-    dispatch(showDetail());
+    history.push(`${MOVIES_PATH}/${movie.id}`);
   }, []);
 
   const handleFilterChange = useCallback((option) => {
@@ -57,10 +57,6 @@ const MovieListContainer = () => {
 
   const handlePageChange = useCallback((newPage) => {
     dispatch(setCurrentPage(newPage));
-    dispatch(fetchMovies());
-  }, []);
-
-  useEffect(() => {
     dispatch(fetchMovies());
   }, []);
 

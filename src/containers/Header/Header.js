@@ -1,44 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import GlobalSearch from '../../components/GlobalSearch/GlobalSearch';
-import MovieDescription from '../../components/MovieDescription/MovieDescription';
-import { ADD_ACTION } from '../../constant';
+import MovieDescriptionWithRouteLoading from '../../components/MovieDescription/MovieDescriptionWithRouteLoading';
+import { ADD_ACTION, MOVIES_PATH } from '../../constant';
 import { openDialog } from '../../reducers/dialogSlice';
-import {
-  selectDetailMovie,
-  selectShowDetail,
-  hideDetail,
-  setSearchText,
-  fetchMovies,
-} from '../../reducers/moviesSlice';
-import { useComponentDidUpdate } from '../../utils/custom-hooks';
 import './Header.scss';
 
 const Header = () => {
-  const isShowDetail = useSelector(selectShowDetail);
-  const detailMovie = useSelector(selectDetailMovie);
   const dispatch = useDispatch();
 
-  const handleSearch = (searchText) => {
-    dispatch(setSearchText(searchText));
-    dispatch(fetchMovies());
-  };
-
-  useComponentDidUpdate(() => {
-    if (isShowDetail) {
-      window.scrollTo(0, 0);
-    }
-  }, [detailMovie]);
-
   return (
-    <header className={'header ' + (isShowDetail ? 'large' : '')}>
-      {isShowDetail ? (
-        <MovieDescription movie={detailMovie} closeButtonHandler={() => dispatch(hideDetail())}></MovieDescription>
-      ) : (
-        <>
+    <header className={'header'}>
+      <div className="logo app-logo">NetflixRoulette</div>
+      <Switch>
+        <Route exact path={`${MOVIES_PATH}/:movieId`} component={MovieDescriptionWithRouteLoading} />
+        <Route path="*">
           <div className="control-area">
-            <span className="logo app-logo">NetflixRoulette</span>
             <div className="user-controls">
               <button
                 className="control-button"
@@ -48,9 +27,9 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <GlobalSearch handleSearch={handleSearch} />
-        </>
-      )}
+          <GlobalSearch />
+        </Route>
+      </Switch>
     </header>
   );
 };

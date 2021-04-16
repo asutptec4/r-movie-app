@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: '[name].[chunkhash].bundle.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
     chunkFilename: '[id].[chunkhash].chunk.js',
     sourceMapFilename: '[name].[chunkhash].bundle.map',
   },

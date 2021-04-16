@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocation, useRouteMatch } from 'react-router-dom';
 
 export const useComponentDidUpdate = (callback, props) => {
   const isMounted = useRef(false);
@@ -42,4 +43,13 @@ export const useToggle = (initialState) => {
     setValue(!value);
   };
   return [value, toggle];
+};
+
+export const useOnRouteMatch = (routeProps, onRouteMatch) => {
+  const location = useLocation();
+  const match = useRouteMatch(routeProps);
+
+  useEffect(() => {
+    onRouteMatch(match);
+  }, [location]);
 };
