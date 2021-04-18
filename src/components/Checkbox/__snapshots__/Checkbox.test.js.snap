@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> should render props 1`] = `
+<div>
+  <label
+    class="checkbox customClass"
+  >
+    Checkbox
+    <input
+      checked=""
+      type="checkbox"
+    />
+    <span
+      class="checkmark"
+    />
+  </label>
+</div>
+`;
