@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> render 1`] = `
+<footer
+  className="footer"
+>
+  <span
+    className="app-logo"
+  >
+    NetflixRoulette
+  </span>
+</footer>
+`;

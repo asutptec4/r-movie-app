@@ -1,6 +1,6 @@
-import React from 'react';
-import { useField } from 'formik';
 import { render } from '@testing-library/react';
+import { useField } from 'formik';
+import React from 'react';
 
 import TextInput from './TextInput';
 
