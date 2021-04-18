@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 describe('<NotFound />', () => {
   test('should render component', () => {
     const { getByRole } = render(<NotFound />);
-    getByRole('button');
+    expect(getByRole('button')).toBeInTheDocument();
   });
 
   test('should navigate to / by button click', () => {

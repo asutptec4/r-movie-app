@@ -19,6 +19,6 @@ describe('<TextInput />', () => {
     const errorText = 'input error';
     useField.mockReturnValue([{}, { touched: true, error: errorText }]);
     const { getByText } = render(<TextInput {...defaultProps} />);
-    getByText(errorText);
+    expect(getByText(errorText)).toBeInTheDocument();
   });
 });
