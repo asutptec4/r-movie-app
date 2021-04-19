@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieDescription /> should render movie description 1`] = `
+<div>
+  <section
+    class="movie-description-container"
+  >
+    <div
+      class="movie-description-buttons"
+    >
+      <div
+        class="icon-container"
+      >
+        <span
+          class="icon-glass"
+        />
+      </div>
+    </div>
+    <div
+      class="movie-description"
+    >
+      <div
+        class="movie-image"
+      >
+        <moviepostercomponent
+          imageurl="https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg"
+        />
+      </div>
+      <div
+        class="description"
+      >
+        <p
+          class="movie-title"
+        >
+          <span
+            class="title"
+          >
+            Transformers 7
+          </span>
+          <span
+            class="rating good"
+          >
+            8.0
+          </span>
+        </p>
+        <span
+          class="movie-runtime"
+        />
+        <p
+          class="movie-duration"
+        >
+          <span>
+            2019
+          </span>
+          <span>
+            120
+             min
+          </span>
+        </p>
+        <p
+          class="movie-overview"
+        >
+          Plot unknown.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+`;
