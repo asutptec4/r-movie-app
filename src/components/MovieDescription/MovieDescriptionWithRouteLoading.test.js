@@ -10,7 +10,7 @@ describe('<MovieDescriptionWithRouteLoading />', () => {
   test('should show loading skeleton at init', () => {
     render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={['/search/transformers']}>
+        <MemoryRouter initialEntries={['/movies/111111']}>
           <MovieDescriptionWithRouteLoading />
         </MemoryRouter>
       </Provider>,
