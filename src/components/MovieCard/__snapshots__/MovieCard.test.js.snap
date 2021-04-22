@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieCard /> should render movie prop 1`] = `
+<div>
+  <div
+    class="movie-card"
+  >
+    <div
+      class="movie-image"
+    >
+      <moviepostercomponent
+        imageurl="https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg"
+      />
+    </div>
+    <div
+      class="movie-desc"
+    >
+      <span
+        class="title"
+      >
+        Transformers 7
+      </span>
+      <span
+        class="genre"
+      >
+        Science Fiction Action Adventure
+      </span>
+      <span
+        class="year"
+      >
+        2019
+      </span>
+    </div>
+    <div
+      class="button"
+    >
+      <div
+        class="single-select-dropdown-container"
+      >
+        <div
+          class="single-select-dropdown-button"
+        >
+          <div
+            class="movie-options-button"
+          >
+            <div>
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

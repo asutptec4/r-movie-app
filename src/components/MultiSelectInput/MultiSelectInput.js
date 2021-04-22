@@ -55,7 +55,7 @@ const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props 
 };
 
 MultiSelectInput.propTypes = {
-  availableOptions: arrayOf(string).isRequired,
+  availableOptions: arrayOf(string),
   placeholder: string,
   label: string,
   id: string,

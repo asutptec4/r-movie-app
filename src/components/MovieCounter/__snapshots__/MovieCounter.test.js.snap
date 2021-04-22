@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieCounter /> should render props 1`] = `
+<div
+  className="app-padding-vertical-15"
+>
+  10
+   movies found
+</div>
+`;
