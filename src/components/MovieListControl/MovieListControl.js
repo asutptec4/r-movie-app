@@ -11,7 +11,7 @@ const MovieListControl = ({ filterOptions, sortOptions, handleFilterChange, hand
     <div className={styles.movieListControls}>
       <div className={styles.filterControl}>
         {filterOptions.map((g) => (
-          <span className={g.selected ? 'active' : ''} key={g.id} onClick={() => handleFilterChange(g)}>
+          <span className={g.selected ? `${styles.active}` : ''} key={g.id} onClick={() => handleFilterChange(g)}>
             {g.name}
           </span>
         ))}
