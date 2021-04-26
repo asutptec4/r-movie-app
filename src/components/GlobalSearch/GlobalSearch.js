@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { SEARCH_PATH } from '../../constant';
 import { fetchMovies, selectSearchText, setSearchText } from '../../reducers/moviesSlice';
 import { useOnRouteMatch } from '../../utils/custom-hooks';
-import './GlobalSearch.scss';
+import styles from './GlobalSearch.module.scss';
 
 const GlobalSearch = () => {
   const searchInput = useRef(null);
@@ -45,10 +45,15 @@ const GlobalSearch = () => {
   }, [searchText]);
 
   return (
-    <div className="global-search">
-      <span className="title">Find your movie</span>
-      <input className="input" placeholder="What do you want to search?" ref={searchInput} onKeyDown={handleKeyDown} />
-      <button className="button" onClick={handleSearch}>
+    <div className={styles.globalSearch}>
+      <span className={styles.title}>Find your movie</span>
+      <input
+        className={styles.input}
+        placeholder="What do you want to search?"
+        ref={searchInput}
+        onKeyDown={handleKeyDown}
+      />
+      <button className={styles.button} onClick={handleSearch}>
         Search
       </button>
     </div>

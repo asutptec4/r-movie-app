@@ -3,8 +3,7 @@ import React from 'react';
 
 import { useComponentDidUpdate, useToggle } from '../../utils/custom-hooks';
 import { defaultHandler } from '../../utils/util-func';
-
-import './Checkbox.scss';
+import styles from './Checkbox.module.scss';
 
 const Checkbox = ({ label, initialState, handleOnChange, className }) => {
   const [isChecked, toggleIsChecked] = useToggle(initialState);
@@ -14,10 +13,10 @@ const Checkbox = ({ label, initialState, handleOnChange, className }) => {
   }, [isChecked]);
 
   return (
-    <label className={`checkbox ${className}`.trim()}>
+    <label className={`${styles.checkbox} ${styles.className}`.trim()}>
       {label}
       <input type="checkbox" checked={isChecked} onChange={toggleIsChecked} />
-      <span className="checkmark"></span>
+      <span className={styles.checkmark}></span>
     </label>
   );
 };

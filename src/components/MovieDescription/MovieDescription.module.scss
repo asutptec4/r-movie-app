@@ -2,21 +2,21 @@
 
 $img-w: 280px;
 
-.movie-description-container {
+.movieDescriptionContainer {
   padding: 1em;
   background-color: rgba(0, 0, 0, 0.5);
 
-  .movie-description-buttons {
+  .movieDescriptionButtons {
     margin-bottom: 1em;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
 
-    .icon-container {
+    .iconContainer {
       padding: 0.5em;
       cursor: pointer;
 
-      .icon-glass {
+      .iconGlass {
         position: relative;
         display: inline-block;
         background-color: transparent;
@@ -39,12 +39,12 @@ $img-w: 280px;
     }
   }
 
-  .movie-description {
+  .movieDescription {
     display: flex;
     flex-flow: row nowrap;
     padding: 0 2em;
 
-    .movie-image {
+    .movieImage {
       min-width: $img-w;
       width: $img-w;
       min-height: calc(4 / 3 * #{$img-w});
@@ -56,7 +56,7 @@ $img-w: 280px;
       max-height: calc(4 / 3 * #{$img-w});
       overflow: hidden;
 
-      .movie-title {
+      .movieTitle {
         margin-bottom: 0.5em;
 
         .title {
@@ -84,11 +84,11 @@ $img-w: 280px;
         }
       }
 
-      .movie-runtime {
+      .movieRuntime {
         font-size: $fs-small;
       }
 
-      .movie-duration {
+      .movieDuration {
         color: $item-color;
         font-size: $fs-logo;
 
@@ -99,7 +99,7 @@ $img-w: 280px;
     }
 
     @media screen and (max-width: 800px) {
-      .movie-image {
+      .movieImage {
         display: none;
       }
 

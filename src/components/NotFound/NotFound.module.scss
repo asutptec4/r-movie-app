@@ -1,6 +1,6 @@
 @import '../../scss/index.scss';
 
-.not-found-container {
+.notFoundContainer {
   padding: 100px;
   background-color: $content-bg-color;
 
@@ -10,7 +10,7 @@
     max-width: 100%;
   }
 
-  .return-button {
+  .returnButton {
     @include app-button($content-bg-color, $item-color);
     display: block;
     margin: 0 auto;
@@ -21,14 +21,14 @@
 }
 
 @media screen and (max-width: $media-width) {
-  .not-found-container {
+  .notFoundContainer {
     padding: 100px 0;
 
     .image {
       max-width: calc(#{$media-width} / 2);
     }
 
-    .return-button {
+    .returnButton {
       width: 100%;
     }
   }

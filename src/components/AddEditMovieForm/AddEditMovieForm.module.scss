@@ -1,6 +1,6 @@
 @import '../../scss/index.scss';
 
-.add-edit-movie-form {
+.addEditMovieForm {
   display: flex;
   flex-flow: column;
 
@@ -10,7 +10,7 @@
     margin-bottom: 1em;
   }
 
-  .button-container {
+  .buttonContainer {
     display: flex;
     justify-content: flex-end;
     margin-top: 2em;

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { selectOption } from '../../types/select-option';
 import { useComponentDidUpdate } from '../../utils/custom-hooks';
 import { defaultHandler } from '../../utils/util-func';
-import './SingleSelectDropdown.scss';
+import styles from './SingleSelectDropdown.module.scss';
 
 const getSelected = (options) => {
   if (options && options.length > 0) {
@@ -30,21 +30,21 @@ const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
   }, [options]);
 
   return (
-    <div className="single-select-dropdown-container">
-      <div className="single-select-dropdown-button" onClick={toggling}>
+    <div className={styles.singleSelectDropdownContainer}>
+      <div className={styles.singleSelectDropdownButton} onClick={toggling}>
         {customButton || (
           <>
             {selectedOption ? selectedOption.name : 'Select Option'}
-            <span className="single-select-dropdown-arrow"></span>
+            <span className={styles.singleSelectDropdownArrow}></span>
           </>
         )}
       </div>
 
       {isOpen && (
-        <div className="single-select-dropdown-list-container">
-          <ul className="single-select-dropdown-list">
+        <div className={styles.singleSelectDropdownListContainer}>
+          <ul className={styles.singleSelectDropdownList}>
             {options.map((option) => (
-              <li className="list-item" onClick={onOptionClicked(option)} key={option.id}>
+              <li className={styles.listItem} onClick={onOptionClicked(option)} key={option.id}>
                 {option.name}
               </li>
             ))}

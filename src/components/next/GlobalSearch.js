@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { SEARCH_PATH } from '../../constant';
 import { selectSearchText } from '../../reducers/moviesSlice';
-// import './GlobalSearch.scss';
+import styles from '../GlobalSearch/GlobalSearch.module.scss';
 
 const GlobalSearch = () => {
   const searchInput = useRef(null);
@@ -29,10 +29,15 @@ const GlobalSearch = () => {
   }, [searchText]);
 
   return (
-    <div className="global-search">
-      <span className="title">Find your movie</span>
-      <input className="input" placeholder="What do you want to search?" ref={searchInput} onKeyDown={handleKeyDown} />
-      <button className="button" onClick={handleSearch}>
+    <div className={styles.globalSearch}>
+      <span className={styles.title}>Find your movie</span>
+      <input
+        className={styles.input}
+        placeholder="What do you want to search?"
+        ref={searchInput}
+        onKeyDown={handleKeyDown}
+      />
+      <button className={styles.button} onClick={handleSearch}>
         Search
       </button>
     </div>

@@ -4,32 +4,32 @@ import React from 'react';
 import { movie } from '../../types';
 import { defaultHandler, ratingToStr } from '../../utils/util-func';
 import MoviePoster from '../MoviePoster/MoviePoster';
-import './MovieDescription.scss';
+import styles from './MovieDescription.module.scss';
 
 const MovieDescription = ({ movie, closeButtonHandler }) => {
   return (
-    <section className="movie-description-container">
-      <div className="movie-description-buttons">
-        <div className="icon-container" onClick={closeButtonHandler}>
-          <span className="icon-glass"></span>
+    <section className={styles.movieDescriptionContainer}>
+      <div className={styles.movieDescriptionButtons}>
+        <div className={styles.iconContainer} onClick={closeButtonHandler}>
+          <span className={styles.iconGlass}></span>
         </div>
       </div>
       {movie?.id && (
-        <div className="movie-description">
-          <div className="movie-image">
+        <div className={styles.movieDescription}>
+          <div className={styles.movieImage}>
             <MoviePoster imageUrl={movie.poster} />
           </div>
-          <div className="description">
-            <p className="movie-title">
-              <span className="title">{movie.title}</span>
-              <span className={'rating ' + ratingToStr(movie.rating)}>{movie.rating}</span>
+          <div className={styles.description}>
+            <p className={styles.movieTitle}>
+              <span className={styles.title}>{movie.title}</span>
+              <span className={`${styles.rating} ${styles[ratingToStr(movie.rating)]}`}>{movie.rating}</span>
             </p>
-            <span className="movie-runtime">{movie.tagline}</span>
-            <p className="movie-duration">
+            <span className={styles.movieTuntime}>{movie.tagline}</span>
+            <p className={styles.movieDuration}>
               <span>{movie.releaseYear}</span>
               <span>{movie.runtime} min</span>
             </p>
-            <p className="movie-overview">{movie.overview}</p>
+            <p className={styles.movieOverview}>{movie.overview}</p>
           </div>
         </div>
       )}

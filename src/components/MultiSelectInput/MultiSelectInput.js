@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useComponentDidUpdate, useToggle } from '../../utils/custom-hooks';
 import Checkbox from '../Checkbox/Checkbox';
-import './MultiSelectInput.scss';
+import styles from './MultiSelectInput.module.scss';
 
 const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props }) => {
   const [showList, toggleShowList] = useToggle();
@@ -31,15 +31,15 @@ const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props 
       <label className="app-form-label" htmlFor={props.id || props.name}>
         {label}
       </label>
-      <div className="multi-select-input">
-        <button onClick={toggleShowList} className="button" type="button">
+      <div className={styles.multiSelectInput}>
+        <button onClick={toggleShowList} className={styles.button} type="button">
           {meta.value.join(', ') || placeholder || 'Select'}
         </button>
         {showList && (
-          <div className="select-options">
+          <div className={styles.selectOptions}>
             {availableOptions.map((option) => (
               <Checkbox
-                className="option"
+                className={styles.option}
                 key={option}
                 label={option}
                 initialState={meta.value.some((o) => o === option)}
