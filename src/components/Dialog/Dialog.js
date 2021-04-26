@@ -1,22 +1,24 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { defaultHandler } from '../../utils/util-func';
 
 import './Dialog.scss';
 
-let modalRoot = document.getElementById('modal-root');
-if (!modalRoot) {
-  modalRoot = document.createElement('div');
-  modalRoot.setAttribute('id', 'modal-root');
-  document.body.appendChild(modalRoot);
-}
 const toggleScroll = () => {
   document.querySelector('html').classList.toggle('scroll-lock');
 };
 
 const Dialog = ({ children, handleClose }) => {
+  const ref = useRef();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    ref.current = document.getElementById('modal-root');
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     toggleScroll();
     return () => {
@@ -24,19 +26,21 @@ const Dialog = ({ children, handleClose }) => {
     };
   });
 
-  return ReactDOM.createPortal(
-    <div className="dialog">
-      <div className="dialog-body">
-        <button className="dialog-close" onClick={handleClose}>
-          <svg className="dialog-close-icon" viewBox="0 0 40 40">
-            <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
-          </svg>
-        </button>
-        <div className="dialog-content">{children}</div>
-      </div>
-    </div>,
-    modalRoot,
-  );
+  return mounted
+    ? ReactDOM.createPortal(
+        <div className="dialog">
+          <div className="dialog-body">
+            <button className="dialog-close" onClick={handleClose}>
+              <svg className="dialog-close-icon" viewBox="0 0 40 40">
+                <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
+              </svg>
+            </button>
+            <div className="dialog-content">{children}</div>
+          </div>
+        </div>,
+        ref.current,
+      )
+    : null;
 };
 
 Dialog.defaultProps = {
