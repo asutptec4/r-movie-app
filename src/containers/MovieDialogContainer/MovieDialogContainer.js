@@ -1,8 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import AddEditMovieForm from '../../components/AddEditMovieForm/AddEditMovieForm';
-import DeleteMovieForm from '../../components/DeleteMovieForm/DeleteMovieForm';
 import Dialog from '../../components/Dialog/Dialog';
 import { ADD_ACTION, DELETE_ACTION, EDIT_ACTION, REQUEST_COMPLETED } from '../../constant';
 import {
@@ -46,13 +44,18 @@ const MovieDialogContainer = () => {
     }
   }, [actionStatus]);
 
-  const Form = action === DELETE_ACTION ? DeleteMovieForm : AddEditMovieForm;
+  const Form =
+    action === DELETE_ACTION
+      ? React.lazy(() => import('../../components/DeleteMovieForm/DeleteMovieForm'))
+      : React.lazy(() => import('../../components/AddEditMovieForm/AddEditMovieForm'));
 
   return (
     <>
       {isOpen && (
         <Dialog handleClose={handleClose}>
-          <Form movie={movie} handleSubmit={handleSubmit} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Form movie={movie} handleSubmit={handleSubmit} />
+          </Suspense>
         </Dialog>
       )}
     </>
