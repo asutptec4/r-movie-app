@@ -4,8 +4,11 @@ module.exports = {
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push({
-      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      test: /\.(png)$/i,
       type: 'asset/resource',
+      generator: {
+        filename: 'static/[hash][ext]',
+      },
     });
     return config;
   },

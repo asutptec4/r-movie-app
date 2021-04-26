@@ -1,8 +1,8 @@
 import React from 'react';
 
 import PageWithSearch from '../../components/next/PageWithSearch';
-import { fetchMovies, setSearchText } from '../../src/reducers/moviesSlice';
-import { wrapper } from '../../src/store/store';
+import { fetchMovies, setSearchText } from '../../reducers/moviesSlice';
+import { wrapper } from '../../store/store';
 
 const Search = () => {
   return <PageWithSearch />;
