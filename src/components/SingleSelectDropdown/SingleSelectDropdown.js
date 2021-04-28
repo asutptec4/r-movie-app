@@ -32,6 +32,7 @@ const SingleSelectDropdown = ({ options, customButton, onOptionChange }) => {
   return (
     <div className={styles.singleSelectDropdownContainer}>
       <div className={styles.singleSelectDropdownButton} onClick={toggling}>
+        {/* PATTERN: render props */}
         {customButton || (
           <>
             {selectedOption ? selectedOption.name : 'Select Option'}

@@ -25,6 +25,7 @@ import MovieList from '../MovieList/MovieList';
 import MovieListControl from '../MovieListControl/MovieListControl';
 import PageControl from '../PageControl/PageControl';
 
+// PATTERN: HOC
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
 const MovieListContainer = () => {

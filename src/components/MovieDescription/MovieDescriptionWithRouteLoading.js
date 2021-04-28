@@ -14,6 +14,7 @@ import {
 } from '../../reducers/detailsSlice';
 import MovieDescription from './MovieDescription';
 
+// PATTERN: HOC
 const MovieDescriptionWithLoading = WithLoading(MovieDescription);
 
 const MovieDescriptionWithRouteLoading = () => {
