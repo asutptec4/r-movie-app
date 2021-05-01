@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import Icon from '../../assets/image-not-found.png';
 import { useComponentDidUpdate } from '../../utils/custom-hooks';
-import './MoviePoster.scss';
+import styles from './MoviePoster.module.scss';
 
 const MoviePoster = ({ imageUrl }) => {
   const [image, setImage] = useState(imageUrl);
@@ -16,7 +16,7 @@ const MoviePoster = ({ imageUrl }) => {
     <img
       src={image}
       alt="Movie poster"
-      className="movie-poster"
+      className={styles.moviePoster}
       onError={(e) => {
         setImage(Icon);
       }}

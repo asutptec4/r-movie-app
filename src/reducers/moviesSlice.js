@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { MovieApi } from '../api/api';
 import { DESC_ORDER, MOVIES_SLICE_NAME } from '../constant';
@@ -32,6 +33,8 @@ export const fetchMovies = createAsyncThunk(`${MOVIES_SLICE_NAME}/fetchMovies`, 
   return MovieApi.getAll({ search, genres, sortBy, sortOrder, offset, limit });
 });
 
+const hydrate = createAction(HYDRATE);
+
 const moviesSlice = createSlice({
   name: MOVIES_SLICE_NAME,
   initialState,
@@ -55,18 +58,34 @@ const moviesSlice = createSlice({
       state.currentPage = action.payload;
     },
   },
-  extraReducers: {
-    [fetchMovies.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchMovies.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.movies = action.payload?.data?.data.map(movieFromJson);
-      state.foundMoviesCount = action.payload?.data?.totalAmount;
-    },
-    [fetchMovies.rejected]: (state) => {
-      state.isLoading = false;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(hydrate, (state, action) => {
+        return {
+          ...state,
+          ...action.payload[moviesSlice.name],
+        };
+      })
+      .addCase(fetchMovies.pending, (state) => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      })
+      .addCase(fetchMovies.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          movies: action.payload?.data?.data.map(movieFromJson),
+          foundMoviesCount: action.payload?.data?.totalAmount,
+        };
+      })
+      .addCase(fetchMovies.rejected, (state) => {
+        return {
+          ...state,
+          isLoading: false,
+        };
+      });
   },
 });
 

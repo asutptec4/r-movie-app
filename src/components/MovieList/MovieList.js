@@ -5,13 +5,13 @@ import { movie } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
 import MovieCard from '../MovieCard/MovieCard';
 import MovieCounter from '../MovieCounter/MovieCounter';
-import './MovieList.scss';
+import styles from './MovieList.module.scss';
 
 const MovieList = ({ movies, foundMoviesCount, handleCardAction, handleCardClick }) => {
   return (
     <>
       <MovieCounter movieCount={foundMoviesCount} />
-      <div className="movie-list">
+      <div className={styles.movieList}>
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}

@@ -1,13 +1,13 @@
 @import '../../scss/index.scss';
 
-.single-select-dropdown-container {
+.singleSelectDropdownContainer {
   cursor: pointer;
   width: fit-content;
 
-  .single-select-dropdown-button {
+  .singleSelectDropdownButton {
     text-transform: uppercase;
 
-    .single-select-dropdown-arrow {
+    .singleSelectDropdownArrow {
       position: relative;
       top: 15px;
       left: 5px;
@@ -19,18 +19,18 @@
     }
   }
 
-  .single-select-dropdown-list-container {
+  .singleSelectDropdownListContainer {
     position: absolute;
     background-color: $bg-color;
   }
 
-  .single-select-dropdown-list {
+  .singleSelectDropdownList {
     margin: 0;
     padding: 5px 0;
   }
 }
 
-.list-item {
+.listItem {
   list-style: none;
   text-transform: capitalize;
   padding: 5px 10px;

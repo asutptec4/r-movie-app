@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './Footer.scss';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <span className="app-logo">NetflixRoulette</span>
     </footer>
   );

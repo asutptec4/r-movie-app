@@ -1,11 +1,10 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
-import Icon from '../../assets/page-not-found.png';
-import styles from './NotFound.module.scss';
+import styles from '../components/NotFound/NotFound.module.scss';
 
 const NotFound = () => {
-  const history = useHistory();
+  const history = useRouter();
 
   const handleClick = () => {
     history.push('/');
@@ -13,7 +12,7 @@ const NotFound = () => {
 
   return (
     <div className={styles.notFoundContainer}>
-      <img src={Icon} alt="Page not found" className={styles.image}></img>
+      <img src="/page-not-found.png" alt="Page not found" className={styles.image}></img>
       <button className={styles.returnButton} onClick={handleClick}>
         Go back to home
       </button>

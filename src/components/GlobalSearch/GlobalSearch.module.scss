@@ -1,6 +1,6 @@
 @import '../../scss/index.scss';
 
-.global-search {
+.globalSearch {
   min-height: 50px;
   margin: 70px 120px;
 
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .global-search {
+  .globalSearch {
     margin: 1em auto;
     min-width: 600px;
   }

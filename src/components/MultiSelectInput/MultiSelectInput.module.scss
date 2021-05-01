@@ -1,6 +1,6 @@
 @import '../../scss/index.scss';
 
-.multi-select-input {
+.multiSelectInput {
   position: relative;
   display: inline-block;
 
@@ -11,7 +11,7 @@
     cursor: pointer;
   }
 
-  .select-options {
+  .selectOptions {
     display: block;
     position: absolute;
     box-sizing: border-box;

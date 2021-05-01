@@ -8,7 +8,7 @@ import { defaultHandler } from '../../utils/util-func';
 import MultiSelectInput from '../MultiSelectInput/MultiSelectInput';
 import TextInput from '../TextInput/TextInput';
 import validationSchema from './AddEditMovieFormValidationSchema';
-import './AddEditMovieForm.scss';
+import styles from './AddEditMovieForm.module.scss';
 
 const AddEditMovieForm = ({ movie, handleSubmit }) => {
   return (
@@ -28,8 +28,8 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form className="add-edit-movie-form">
-          <div className="title">{movie.id ? 'Edit' : 'Add'} movie</div>
+        <Form className={styles.addEditMovieForm}>
+          <div className={styles.title}>{movie.id ? 'Edit' : 'Add'} movie</div>
           {movie.id && (
             <>
               <div className="app-form-label">Movie ID:</div>
@@ -47,11 +47,11 @@ const AddEditMovieForm = ({ movie, handleSubmit }) => {
           />
           <TextInput label="Overview:" name="overview" placeholder="Overview here" type="text" />
           <TextInput label="Runtime:" name="runtime" placeholder="Runtime here" type="text" />
-          <div className="button-container">
-            <button className="reset" type="reset">
+          <div className={styles.buttonContainer}>
+            <button className={styles.reset} type="reset">
               Reset
             </button>
-            <button className="save" disabled={isSubmitting} type="submit">
+            <button className={styles.save} disabled={isSubmitting} type="submit">
               Save
             </button>
           </div>

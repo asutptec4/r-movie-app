@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
@@ -12,8 +13,12 @@ const reducer = {
   details: detailsReducer,
 };
 
-export default configureStore({
+const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk).concat(createLogger()),
   devTools: process.env.NODE_ENV !== 'production',
 });
+
+export default store;
+
+export const wrapper = createWrapper(() => store);

@@ -29,13 +29,13 @@ export const movieToJson = (movie) => ({
 
 export const movieFromJson = (json) => ({
   id: json.id,
-  title: json.title,
-  subtitle: json.tagline,
-  poster: json.poster_path,
-  overview: json.overview,
-  genres: json.genres,
-  releaseDate: json.release_date,
-  releaseYear: getReleaseYear(json.release_date),
-  runtime: json.runtime,
-  rating: roundRating(json.vote_average),
+  title: json.title || '',
+  subtitle: json.tagline || '',
+  poster: json.poster_path || '',
+  overview: json.overview || '',
+  genres: json.genres || [],
+  releaseDate: json.release_date || '',
+  releaseYear: getReleaseYear(json.release_date) || '',
+  runtime: json.runtime || 0,
+  rating: roundRating(json.vote_average) || '',
 });

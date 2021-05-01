@@ -1,13 +1,13 @@
 @import '../../scss/index.scss';
 
-.movie-list {
+.movieList {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
 
 @media screen and (min-width: 1200px) {
-  .movie-list {
+  .movieList {
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-between;
