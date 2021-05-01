@@ -13,15 +13,15 @@ const GlobalSearch = () => {
 
   const history = useRouter();
 
+  const handleSearch = () => {
+    const searchStr = searchInput.current.value;
+    history.push(`${SEARCH_PATH}/${searchStr}`);
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
-  };
-
-  const handleSearch = () => {
-    const searchText = searchInput.current.value;
-    history.push(`${SEARCH_PATH}/${searchText}`);
   };
 
   useEffect(() => {

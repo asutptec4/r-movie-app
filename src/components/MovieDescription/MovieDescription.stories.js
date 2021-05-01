@@ -24,5 +24,5 @@ const movie = {
   title: 'Transformers 7',
 };
 Base.args = {
-  movie: movie,
+  movie,
 };

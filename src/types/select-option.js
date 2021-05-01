@@ -7,3 +7,5 @@ export const selectOption = exact({
   name: string.isRequired,
   selected: bool,
 });
+
+export default selectOption;

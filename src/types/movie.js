@@ -4,7 +4,7 @@ import { getReleaseYear, roundRating } from '../utils/util-func';
 
 const { arrayOf, exact, number, string } = PropTypes;
 
-export const movie = exact({
+export const movieType = exact({
   id: number,
   title: string,
   subtitle: string,

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { availableGenres } from '../../movie-config';
-import { movie } from '../../types/movie';
+import { movieType } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
 import MultiSelectInput from '../MultiSelectInput/MultiSelectInput';
 import TextInput from '../TextInput/TextInput';
-import validationSchema from './AddEditMovieFormValidationSchema';
 import styles from './AddEditMovieForm.module.scss';
+import validationSchema from './AddEditMovieFormValidationSchema';
 
 const AddEditMovieForm = ({ movie, handleSubmit }) => {
   return (
@@ -66,7 +66,7 @@ AddEditMovieForm.defaultProps = {
 };
 
 AddEditMovieForm.propTypes = {
-  movie: movie,
+  movie: movieType,
   handleSubmit: PropTypes.func,
 };
 
