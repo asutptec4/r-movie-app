@@ -13,15 +13,15 @@ const GlobalSearch = () => {
 
   const history = useRouter();
 
+  const handleSearch = () => {
+    const searchStr = searchInput.current.value;
+    history.push(`${SEARCH_PATH}/${searchStr}`);
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
-  };
-
-  const handleSearch = () => {
-    const searchText = searchInput.current.value;
-    history.push(`${SEARCH_PATH}/${searchText}`);
   };
 
   useEffect(() => {
@@ -30,8 +30,11 @@ const GlobalSearch = () => {
 
   return (
     <div className={styles.globalSearch}>
-      <span className={styles.title}>Find your movie</span>
+      <label className={styles.title} htmlFor="searchInput">
+        Find your movie
+      </label>
       <input
+        id="searchInput"
         className={styles.input}
         placeholder="What do you want to search?"
         ref={searchInput}

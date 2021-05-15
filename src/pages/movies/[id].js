@@ -6,7 +6,7 @@ import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import MovieDescription from '../../components/MovieDescription/MovieDescription';
 import MovieListContainer from '../../components/next/MovieListContainer';
 import { MOVIES_PATH } from '../../constant';
-import { movie, movieFromJson } from '../../types';
+import { movieType, movieFromJson } from '../../types';
 
 const Movies = ({ movie }) => {
   const router = useRouter();
@@ -46,6 +46,6 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-Movies.propTypes = { movie: movie };
+Movies.propTypes = { movie: movieType };
 
 export default Movies;

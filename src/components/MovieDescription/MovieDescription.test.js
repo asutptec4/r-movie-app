@@ -20,7 +20,7 @@ describe('<MovieDescription />', () => {
       subtitle: '',
       title: 'Transformers 7',
     },
-    closeButtonHandler: closeButtonHandler,
+    closeButtonHandler,
   };
 
   test('should render movie description', () => {

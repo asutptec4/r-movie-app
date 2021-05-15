@@ -25,6 +25,7 @@ import {
 import { updateOptions } from '../../utils/util-func';
 import MovieDialogContainer from '../MovieDialogContainer/MovieDialogContainer';
 
+// PATTERN: HOC
 const MovieListWithLoading = WithLoading(WithNoFound(MovieList));
 
 const MovieListContainer = () => {
@@ -60,6 +61,7 @@ const MovieListContainer = () => {
     dispatch(fetchMovies());
   }, []);
 
+  // PATTERN: composition, container component
   return (
     <>
       <MovieListControl

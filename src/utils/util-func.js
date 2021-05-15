@@ -34,7 +34,7 @@ export const updateOptions = (options, selectedId) => {
 export const calcLastPage = (totalCount, countPerPage) => {
   let pageCount = Math.floor(totalCount / countPerPage);
   if (totalCount % countPerPage !== 0) {
-    pageCount++;
+    pageCount += 1;
   }
   return pageCount;
 };

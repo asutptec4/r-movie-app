@@ -9,8 +9,11 @@ class AppDocument extends Document {
 
   render() {
     return (
-      <Html>
-        <Head />
+      <Html lang="en">
+        <Head>
+          <title>NetflixRoulette</title>
+          <meta name="description" content="NetflixRoulette is cool movie service."></meta>
+        </Head>
         <body>
           <Main />
           <NextScript />

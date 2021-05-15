@@ -110,7 +110,7 @@ describe('detailsSlice', () => {
       isNotFound: false,
     });
     const id = 1;
-    MovieApi.getById.mockResolvedValueOnce({ data: { id: id, title: 'title' }, status: 200, statusText: 'OK' });
+    MovieApi.getById.mockResolvedValueOnce({ data: { id, title: 'title' }, status: 200, statusText: 'OK' });
     await store.dispatch(fetchMovie(id));
     const actions = store.getActions();
     expect(actions[0]).toEqual(

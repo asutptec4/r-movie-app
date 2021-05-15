@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { movie } from '../../types/movie';
+import { movieType } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
 import styles from './DeleteMovieForm.module.scss';
 
@@ -25,7 +25,7 @@ DeleteMovieForm.defaultProps = {
 };
 
 DeleteMovieForm.propTypes = {
-  movie: movie,
+  movie: movieType,
   handleSubmit: PropTypes.func,
 };
 

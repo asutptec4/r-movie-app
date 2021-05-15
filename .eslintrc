@@ -4,7 +4,7 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "standard", "plugin:prettier/recommended"],
+  "extends": ["plugin:react/recommended", "standard", "airbnb-base", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -14,9 +14,9 @@
   },
   "plugins": ["react"],
   "rules": {
-    "react/prop-types": "warn",
+    "react/prop-types": 1,
     "import/order": [
-      "error",
+      2,
       {
         "groups": ["builtin", "external", "internal"],
         "pathGroups": [
@@ -32,7 +32,12 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+    "no-param-reassign": [2, { "props": true, "ignorePropertyModificationsForRegex": ["state"] }],
+    "import/no-extraneous-dependencies": 1,
+    "import/no-unresolved": [2, { "caseSensitive": false }],
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+    "class-methods-use-this": [2, { "exceptMethods": ["render"] }]
   }
   // "ignorePatterns": "**/*.test.js"
 }

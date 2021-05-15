@@ -10,12 +10,12 @@ const MultiSelectInput = ({ availableOptions = [], placeholder, label, ...props 
   const [showList, toggleShowList] = useToggle();
   const [, meta, helper] = useField(props);
 
-  const handleOptionOnChange = (state, label) => {
+  const handleOptionOnChange = (state, option) => {
     let selectedValues = [...meta.value];
     if (state) {
-      selectedValues.push(label);
+      selectedValues.push(option);
     } else {
-      selectedValues = selectedValues.filter((v) => v !== label);
+      selectedValues = selectedValues.filter((v) => v !== option);
     }
     helper.setValue(selectedValues);
   };

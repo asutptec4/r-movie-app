@@ -13,7 +13,7 @@ const Checkbox = ({ label, initialState, handleOnChange, className }) => {
   }, [isChecked]);
 
   return (
-    <label className={`${styles.checkbox} ${styles.className}`.trim()}>
+    <label className={`${styles.checkbox} ${styles[className]}`.trim()}>
       {label}
       <input type="checkbox" checked={isChecked} onChange={toggleIsChecked} />
       <span className={styles.checkmark}></span>

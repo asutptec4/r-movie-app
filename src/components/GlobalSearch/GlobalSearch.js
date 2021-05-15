@@ -15,22 +15,22 @@ const GlobalSearch = () => {
 
   const history = useHistory();
 
-  const makeSearch = (searchText) => {
-    dispatch(setSearchText(searchText));
+  const makeSearch = (searchStr) => {
+    dispatch(setSearchText(searchStr));
     dispatch(fetchMovies());
+  };
+
+  const handleSearch = () => {
+    const searchStr = searchInput.current.value;
+    history.push(`${SEARCH_PATH}/${searchStr}`);
+    if (searchStr === '') {
+      makeSearch(searchStr);
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
-    }
-  };
-
-  const handleSearch = () => {
-    const searchText = searchInput.current.value;
-    history.push(`${SEARCH_PATH}/${searchText}`);
-    if (searchText === '') {
-      makeSearch(searchText);
     }
   };
 
@@ -46,8 +46,11 @@ const GlobalSearch = () => {
 
   return (
     <div className={styles.globalSearch}>
-      <span className={styles.title}>Find your movie</span>
+      <label className={styles.title} htmlFor="searchInput">
+        Find your movie
+      </label>
       <input
+        id="searchInput"
         className={styles.input}
         placeholder="What do you want to search?"
         ref={searchInput}

@@ -18,7 +18,7 @@ import { useComponentDidUpdate } from '../../utils/custom-hooks';
 
 const MovieDialogContainer = () => {
   const action = useSelector(selectDialogAction);
-  const movie = useSelector(selectDialogMovie);
+  const dialogMovie = useSelector(selectDialogMovie);
   const isOpen = useSelector(selectDialogIsOpen);
   const actionStatus = useSelector(selectDialogRequestStatus);
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const MovieDialogContainer = () => {
       {isOpen && (
         <Dialog handleClose={handleClose}>
           <Suspense fallback={<div>Loading...</div>}>
-            <Form movie={movie} handleSubmit={handleSubmit} />
+            <Form movie={dialogMovie} handleSubmit={handleSubmit} />
           </Suspense>
         </Dialog>
       )}

@@ -8,7 +8,7 @@ const instance = create({
 
 const buildQuery = (params) => {
   if (!params) {
-    return;
+    return null;
   }
   const { search, genres, sortBy, sortOrder = DESC_ORDER, offset = 0, limit = 15 } = params;
   const requestParam = {
@@ -38,3 +38,5 @@ export const MovieApi = {
   update: (movie) => instance.put('', movie).then(responseHandler),
   delete: (movieId) => instance.delete(`/${movieId}`).then(responseHandler),
 };
+
+export default MovieApi;

@@ -17,7 +17,7 @@ const MoviePoster = ({ imageUrl }) => {
       src={image}
       alt="Movie poster"
       className={styles.moviePoster}
-      onError={(e) => {
+      onError={() => {
         setImage(Icon);
       }}
     ></img>

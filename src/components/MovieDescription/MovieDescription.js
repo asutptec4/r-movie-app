@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { movie } from '../../types';
+import { movieType } from '../../types';
 import { defaultHandler, ratingToStr } from '../../utils/util-func';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import styles from './MovieDescription.module.scss';
@@ -41,6 +41,6 @@ MovieDescription.defaultProps = {
   closeButtonHandler: defaultHandler,
 };
 
-MovieDescription.propTypes = { closeButtonHandler: PropTypes.func, movie: movie };
+MovieDescription.propTypes = { closeButtonHandler: PropTypes.func, movie: movieType };
 
 export default MovieDescription;

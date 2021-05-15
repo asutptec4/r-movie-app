@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { movie } from '../../types/movie';
+import { movieType } from '../../types/movie';
 import { defaultHandler } from '../../utils/util-func';
 import MovieCard from '../MovieCard/MovieCard';
 import MovieCounter from '../MovieCounter/MovieCounter';
@@ -32,7 +32,7 @@ MovieList.defaultProps = {
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(movie),
+  movies: PropTypes.arrayOf(movieType),
   foundMoviesCount: PropTypes.number.isRequired,
   handleCardAction: PropTypes.func,
   handleCardClick: PropTypes.func,
