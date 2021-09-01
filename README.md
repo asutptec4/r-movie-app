@@ -33,6 +33,10 @@ Launches the ESLint to find code's problems.\
 
 Launches the Prettier to format the code.\
 
+## API Link
+
+https://github.com/VarvaraZadnepriak/MoviesAPI.ReactJS
+
 ## Learn More
 
 To learn React, check out the [React documentation](https://reactjs.org/).
